@@ -1,0 +1,25 @@
+name: update latest blog posts
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: pull latest posts from 0to1 feed
+        uses: gautamkrishnar/blog-post-workflow@v1
+        with:
+          feed_list: "https://0to1.saegim.studio/feed.xml"
+          max_post_count: 5
+          date_format: "yyyy-MM-dd"
+          template: "- [$title]($url) <sub>$date</sub>$newline"
+          commit_message: "docs(readme): 블로그 최신 글 목록을 갱신한다"
+          committer_username: "github-actions[bot]"
+          committer_email: "41898282+github-actions[bot]@users.noreply.github.com"
