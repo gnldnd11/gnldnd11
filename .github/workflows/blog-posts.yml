@@ -18,8 +18,8 @@ jobs:
         with:
           feed_list: "https://0to1.saegim.studio/feed.xml"
           max_post_count: 5
-          date_format: "yyyy-MM-dd"
-          template: "- [$title]($url) <sub>$date</sub>$newline"
+          date_format: "yyyy-mm-dd"
+          template: "$newline- [$title]($url) <sub>$date</sub>"
           commit_message: "docs(readme): 블로그 최신 글 목록을 갱신한다"
           committer_username: "github-actions[bot]"
           committer_email: "41898282+github-actions[bot]@users.noreply.github.com"
