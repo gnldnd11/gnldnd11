@@ -97,7 +97,11 @@
 
 ## Latest Posts
 
-<!-- BLOG-POST-LIST:START -->
+<!-- BLOG-POST-LIST:START -->- [68개 일지 중 배움 칸이 채워진 날이 하나도 없었습니다](https://0to1.saegim.studio/posts/devlog-til-vs-learned) <sub>2026-00-14</sub>
+- [색인 화면 한 번 열 때 Firestore 읽기 313번 나가던 것을 3번으로 만들었습니다](https://0to1.saegim.studio/posts/devlog-firestore-read-quota) <sub>2026-00-13</sub>
+- [만드는 사람과 쓰는 사람이 화면 하나를 반씩 쓰고 있었습니다](https://0to1.saegim.studio/posts/devlog-publish-search-split) <sub>2026-00-10</sub>
+- [개발일지 탭에 개발일지가 없었습니다](https://0to1.saegim.studio/posts/devlog-tab-had-blog-posts) <sub>2026-00-07</sub>
+- [색인에 개발일지를 넣었더니 커밋 해시가 나왔습니다](https://0to1.saegim.studio/posts/rag-devlog-vs-wiki) <sub>2026-00-06</sub>
 <!-- BLOG-POST-LIST:END -->
 
 <p align="right"><a href="https://0to1.saegim.studio">더 보기</a></p>
