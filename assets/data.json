@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-15 15:58",
+  "fetched_at": "2026-09-15 15:59",
   "lab": {
     "as_of": "2026-09-14 23:13",
     "status_line": "이상 없음",
@@ -126,7 +126,7 @@
     {
       "id": "saegim.claude-usage-crab",
       "name": "Claude Usage Crab",
-      "installs": 379,
+      "installs": 380,
       "version": "1.13.0"
     },
     {
