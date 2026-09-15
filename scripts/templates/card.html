@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  html, body { margin: 0; width: 580px; height: 176px; overflow: hidden; }
+  body {
+    font-family: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    color: $text; -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: "JetBrains Mono", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", ui-monospace, monospace; }
+  .card {
+    box-sizing: border-box; width: 580px; height: 176px; padding: 22px 24px 20px;
+    background: $paper; border: 1px solid $line; border-radius: 14px;
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(420px 160px at 100% 0%, $glow, transparent 70%);
+  }
+  .card::after {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: $bar;
+  }
+  .top { display: flex; align-items: center; justify-content: space-between; }
+  .tag { font-size: 10.5px; font-weight: 700; letter-spacing: .14em; color: $accent; }
+  .pill {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .08em; color: $bar;
+    padding: 3px 9px; border: 1px solid $bar; border-radius: 999px;
+  }
+  .title { margin-top: 9px; font-size: 21px; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
+  .desc {
+    margin-top: 7px; font-size: 13px; line-height: 1.5; color: $muted;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .stack { position: absolute; left: 24px; right: 24px; bottom: 18px; font-size: 11px; letter-spacing: .02em; color: $dim; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="top">
+    <div class="tag mono">$tag</div>
+    <div class="pill mono">$status</div>
+  </div>
+  <div class="title">$title</div>
+  <div class="desc">$desc</div>
+  <div class="stack mono">$stack</div>
+</div>
+</body>
+</html>

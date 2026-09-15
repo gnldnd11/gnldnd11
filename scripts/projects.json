@@ -1,0 +1,102 @@
+[
+  {
+    "slug": "noon",
+    "title": "noon",
+    "tag": "WATCHOS · APP STORE 2026.07",
+    "desc": "손목 위에 사는 눈. 수치 대신 시선·깜빡임·글리치로만 말합니다. 텍스처 없이 매 프레임 벡터로 그리고, 감정은 9개 상태의 FSM 입니다.",
+    "stack": "Swift · SwiftUI · SpriteKit · WeatherKit",
+    "status": "출시",
+    "kind": "ok",
+    "url": "https://0to1.saegim.studio/projects/noon/"
+  },
+  {
+    "slug": "claude-usage-crab",
+    "title": "Claude Usage Crab",
+    "tag": "VS CODE · MARKETPLACE",
+    "desc": "백그라운드 서브에이전트가 블랙박스라서 만들었습니다. Claude Code 가 협조하지 않으니 디스크와 네트워크에 흐르는 것만 읽습니다. 훅 없음, 빌드 없음.",
+    "stack": "JavaScript · VS Code API",
+    "status": "출시",
+    "kind": "ok",
+    "url": "https://marketplace.visualstudio.com/items?itemName=saegim.claude-usage-crab"
+  },
+  {
+    "slug": "harbormaster",
+    "title": "Harbormaster",
+    "tag": "VS CODE · MARKETPLACE",
+    "desc": "떠 있는 로컬 서버를 포트 번호가 아니라 프로젝트 이름으로 보여 줍니다. 에이전트가 켜 놓고 간 dev 서버를 사흘 뒤에 lsof 로 찾는 일을 없앱니다.",
+    "stack": "JavaScript · VS Code API",
+    "status": "출시",
+    "kind": "ok",
+    "url": "https://marketplace.visualstudio.com/items?itemName=saegim.harbormaster"
+  },
+  {
+    "slug": "saegim-eval",
+    "title": "새김 Eval",
+    "tag": "LLM 평가 · 매일 10:00 자동 실행",
+    "desc": "정답지 없이 LLM 출력을 채점합니다. Claude 는 GPT 가, GPT 는 Claude 가 채점해 자기 선호를 피하고, 심어 둔 환각을 심판이 잡는지로 심판을 검증합니다.",
+    "stack": "Python · pydantic · GitHub Actions · launchd",
+    "status": "라이브",
+    "kind": "ok",
+    "url": "https://github.com/gnldnd11/saegim-eval"
+  },
+  {
+    "slug": "cms",
+    "title": "배터리 셀 검사 HMI",
+    "tag": "산업용 · 프리랜서 납품 · 2026.03 ~",
+    "desc": "레거시 MFC 앱을 PySide6 로 다시 썼습니다. 미쓰비시 PLC 와 Hioki 계측기, 256채널 자동 순회, 11-state FSM. 실장비 없이 Mock 엔진으로 개발했습니다.",
+    "stack": "Python · PySide6 · MX Component · RS-232C",
+    "status": "납품",
+    "kind": "ok",
+    "url": "https://0to1.saegim.studio/projects/cms/"
+  },
+  {
+    "slug": "iop-as",
+    "title": "생성형 AI 행정비서",
+    "tag": "공공 SI · 2025.06 ~ 2026.03",
+    "desc": "실시간 LLM 스트리밍과 시간이 걸리는 RPA 를 사용자에게는 하나의 대화로 묶었습니다. 프론트와 스트리밍·통합 백엔드를 주도했습니다.",
+    "stack": "React · TypeScript · Spring Boot · STOMP",
+    "status": "프로덕션",
+    "kind": "ok",
+    "url": "https://0to1.saegim.studio/projects/iop-as/"
+  },
+  {
+    "slug": "geoubom",
+    "title": "그어봄",
+    "tag": "MCP · 카카오 AGENTIC PLAYER 10",
+    "desc": "단톡방의 공정한 중간 지점 top 3 를 카카오 길찾기로 계산하는 MCP. 최장 이동 시간 최소화를 우선합니다. 공모전은 탈락, 새김AI 가 실제로 씁니다.",
+    "stack": "Python · FastMCP · httpx · Kakao API",
+    "status": "공모전",
+    "kind": "accent",
+    "url": "https://0to1.saegim.studio/projects/geoubom/"
+  },
+  {
+    "slug": "power-scanner",
+    "title": "전투력 측정기",
+    "tag": "미니앱 · 앱인토스 바이브코딩 챌린지",
+    "desc": "얼굴 68점 랜드마크로 전투력을 냅니다. 같은 얼굴은 같은 값이 나오도록 실측으로 검증했고, 사진은 기기 밖으로 나가지 않습니다.",
+    "stack": "React · TypeScript · face-api · Canvas 2D",
+    "status": "공모전",
+    "kind": "accent",
+    "url": "https://0to1.saegim.studio/projects/power-scanner/"
+  },
+  {
+    "slug": "ur-bmt",
+    "title": "한국어 LLM 벤치마크",
+    "tag": "사내 도구 · 2025",
+    "desc": "GPT, HyperCLOVA X, Gemini 를 K-MMLU, 공공정책, 번역, KLUE-NLI 네 축으로 같은 조건에서 비교합니다. 정답지가 있어야만 돌아가는 한계가 새김 Eval 로 이어졌습니다.",
+    "stack": "React · Recharts · Node.js · LangChain",
+    "status": "완료",
+    "kind": "accent",
+    "url": "https://0to1.saegim.studio/projects/ur-bmt/"
+  },
+  {
+    "slug": "saegim-ai",
+    "title": "새김AI",
+    "tag": "개인 데이터 AI OS · 2025.10 ~ 2026.04",
+    "desc": "모든 걸 넣어서 아무것도 아니게 된 종료작. 프레임워크 없이 함수콜링, 스트리밍, RAG, 에이전트 루프를 직접 짠 엔진만 떼어 공개했습니다.",
+    "stack": "FastAPI · React 19 · Tauri · Firestore",
+    "status": "종료",
+    "kind": "dim",
+    "url": "https://github.com/gnldnd11/saegim-ai-backend"
+  }
+]

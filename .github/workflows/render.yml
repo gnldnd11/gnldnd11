@@ -1,9 +1,6 @@
-name: render profile
+name: render cards
 
 on:
-  schedule:
-    # 0to1 의 23:00 KST 야간 배치가 끝난 뒤 (23:40 KST = 14:40 UTC)
-    - cron: "40 14 * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -25,7 +22,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: render header and live board
+      - name: render project cards
         env:
           CHROME: google-chrome
         run: python scripts/render.py
@@ -38,6 +35,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "변경 없음"
           else
-            git commit -m "chore(assets): 라이브 현황판을 다시 그린다"
+            git commit -m "chore(assets): 프로젝트 카드를 다시 그린다"
             git push
           fi
