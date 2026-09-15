@@ -1,70 +1,73 @@
-<img src="https://raw.githubusercontent.com/gnldnd11/claude-usage-monitor/main/media/mascot-idle.gif" height="72" align="left" alt="crab" />
+## 김휘웅
 
-## hwiwoong
+**Set the direction. The rest runs itself.**
 
-혼자서 설계, 구현, 배포까지 합니다. 잘된 것만 전시하지 않습니다.
-만드는 과정과 죽인 것까지 [0to1](https://0to1.saegim.studio) 에 남깁니다. · [gnldnd125850@gmail.com](mailto:gnldnd125850@gmail.com)
+혼자서 20개 넘는 프로젝트를 병렬로 굴립니다. 방향은 사람이 정하고, 나머지는 Claude Code 위에 만든 하네스가 돌립니다.
+공공 SI(2022)에서 LLM·RAG 서비스 자체 개발(2025)을 거쳐, 2026년부터는 개인 제품을 만듭니다.
+만드는 과정과 죽인 것까지 [0to1](https://0to1.saegim.studio) 에 남깁니다. 잘된 것만 전시하지 않습니다.
 
-<br />
-
-### 이 방에서 일합니다
-
-<img src="media/crew-room.png" width="554" alt="픽셀 방에서 일하는 에이전트" />
-
-제 코딩 에이전트들이 일하는 방입니다. 에이전트가 실제로 불려 가면 캐릭터가 걸어 들어와 책상에 앉고, 끝나면 쓴 토큰과 걸린 시간이 남습니다.
-막힌 에이전트는 조용히 사라지는 대신 평소보다 오래 앉아 있는 것으로 티가 납니다.
-
-<img src="media/crew-grid.png" width="554" alt="크루 8명" />
-
-크루 8명. 레벨은 장식이 아니라 실제로 끝낸 일로만 오릅니다. 커뮤니티 매니저 Charlie 가 Lv.9 로 가장 높습니다.
+[0to1.saegim.studio](https://0to1.saegim.studio) · [지금 돌고 있는 자동화](https://0to1.saegim.studio/lab/) · [gnldnd125850@gmail.com](mailto:gnldnd125850@gmail.com)
 
 <br />
 
-<p>
-  <img src="https://raw.githubusercontent.com/gnldnd11/claude-usage-monitor/main/media/mascot-idle.gif" height="60" alt="느긋한 게" />
-  <img src="https://raw.githubusercontent.com/gnldnd11/claude-usage-monitor/main/media/mascot-working.gif" height="60" alt="일하는 게" />
-  <img src="https://raw.githubusercontent.com/gnldnd11/claude-usage-monitor/main/media/mascot-despair.gif" height="60" alt="무너지는 게" />
-  <img src="https://raw.githubusercontent.com/gnldnd11/claude-usage-monitor/main/media/mascot-stunned.gif" height="60" alt="기절한 게" />
-</p>
+### 매일 사람 없이 도는 것
 
-이 게는 Claude Code 사용량을 읽습니다. 50% 아래에서는 느긋하고, 50% 를 넘으면 일하고, 70% 를 넘으면 무너지고, 한도 근처에서는 기절합니다. 제 게는 대체로 세 번째입니다.
+| 시각 | 자동화 | 하는 일 |
+|:--|:--|:--|
+| 09:00 | 동향 브리핑 | Hacker News, arXiv, Stack Overflow, Reddit 를 모아 브리핑 카드를 만든다. LLM 은 웹에 못 나가고 raw 데이터만 받는다. 출처를 지어내지 못하게 하기 위해서다. |
+| 10:00 | 새김 RAG eval | 프로덕션 설정으로 평가를 돌려 시계열로 쌓는다. 회귀가 나면 게이트가 빌드를 깬다. |
+| 23:00 | 개발일지 | 그날의 커밋, 파일 수정 시각, 이슈 원장을 읽어 일지를 쓴다. 글감이 있으면 블로그 한 편을 써서 사전 검토 없이 발행한다. 없으면 아무것도 쓰지 않는다. |
+| 23:00 | 문서 신선도 | 위키가 코드에서 얼마나 멀어졌는지 커밋 수로 점수화한다. `100 × 20 / (20 + drift)`. 70 이상 FRESH, 40 미만 ROTTEN. |
+| 23:00 | 원장 드리프트 감지, 사실원장 최신화 | 파일·줄 번호·커밋 해시로 근거를 댈 수 있는 사실만 고친다. 통째로 다시 쓰지 않는다. 밀린 만큼이 아니라 정해진 만큼만 갚는다. |
+| 23:00 | 스토어 지표 수집 | App Store 와 마켓플레이스 수치를 스냅샷으로 남긴다. |
+
+성공만 기록하는 자동화는 거짓말을 합니다. 사흘 동안 동향 수집이 한도 초과로 죽어 있는데 현황판은 "ok" 였던 적이 있습니다.
+그 뒤로 종료 코드, 산출물, 실패 종류를 같이 남기고, 되살릴 값이 있는 실패만 재시도합니다. 지키지 않는 규칙은 지웁니다.
+
+<br />
+
+### 하네스
+
+Skills 5개가 모든 대화에 규칙을 자동 주입하고, 역할별 에이전트 7개(구현, 리뷰, 검증, 커밋, 사서, 블로거, 디자이너)가 별도 컨텍스트에서 병렬로 일합니다.
+커맨드 8개와 야간 크론 3개가 수집, 기록, 지식, 운영을 잇습니다. 무인 실행은 읽기성 명령만 허용하고 임의 셸은 0개입니다.
+세션을 넘는 기억은 파일로 저장소에 커밋합니다. 방법론도 버전을 관리합니다.
+
+자세한 것은 [AI 하네스](https://0to1.saegim.studio/projects/ai-harness/) 문서에 있습니다.
 
 <br />
 
 ### 내놓은 것
 
-**[Claude Usage Crab](https://marketplace.visualstudio.com/items?itemName=saegim.claude-usage-crab)** &nbsp; VS Code 확장 &nbsp; <img src="https://img.shields.io/visual-studio-marketplace/i/saegim.claude-usage-crab?style=flat-square&label=installs&color=6e7681" alt="installs" align="absmiddle" /> &nbsp; <sub>[source](https://github.com/gnldnd11/claude-usage-monitor)</sub>
-위의 방과 게가 여기 삽니다. 세션·주간 한도, 컨텍스트, 오늘 쓴 토큰을 상태바와 패널에서 보여 줍니다. 훅 없이 로컬 트랜스크립트만 읽습니다.
-
-**[Harbormaster](https://marketplace.visualstudio.com/items?itemName=saegim.harbormaster)** &nbsp; VS Code 확장 &nbsp; <sub>[source](https://github.com/gnldnd11/harbormaster)</sub>
-떠 있는 로컬 서버를 포트 번호가 아니라 프로젝트 이름으로 보여 줍니다. 에이전트가 켜 놓고 간 dev 서버를 사흘 뒤에 `lsof` 로 찾는 일을 없애려고 만들었습니다.
-
-**[saegim-ai-backend](https://github.com/gnldnd11/saegim-ai-backend)** &nbsp; 프레임워크 없이 만든 AI 에이전트 엔진
-같은 인터페이스를 native, LangGraph, ReAct 세 런타임으로 구현하고 토글 하나로 바꿉니다. 함수콜링 12툴, 큐 기반 SSE 스트리밍, 임베딩 RAG, GraphRAG, MCP 호스트를 직접 짰습니다. 프레임워크가 마법이 아니라 도구라는 걸 같은 물건을 세 번 만들어 확인했습니다.
-
-**[saegim-eval](https://github.com/gnldnd11/saegim-eval)** &nbsp; 정답지 없이 LLM 출력을 채점하는 평가 엔진
-Claude 출력은 GPT 가, GPT 출력은 Claude 가 채점해 자기 선호를 피합니다. 일부러 심은 환각을 심판이 잡는지로 심판을 검증하고, 회귀가 나면 CI 가 빌드를 깹니다.
+| | | |
+|:--|:--|:--|
+| [noon](https://0to1.saegim.studio/projects/noon/) | watchOS · App Store 2026.07 | 손목 위에 사는 눈. 수치 대신 시선·깜빡임·글리치로만 말한다. 텍스처 없이 매 프레임 벡터로 그리고, 감정은 9개 상태의 FSM 이다. |
+| [Claude Usage Crab](https://marketplace.visualstudio.com/items?itemName=saegim.claude-usage-crab) | VS Code · Marketplace <img src="https://img.shields.io/visual-studio-marketplace/i/saegim.claude-usage-crab?style=flat-square&label=installs&color=6e7681" alt="installs" align="absmiddle" /> | 백그라운드 서브에이전트가 블랙박스라서 만들었다. Claude Code 가 협조하지 않으니 디스크와 네트워크에 흐르는 것만 읽는다. |
+| [Harbormaster](https://marketplace.visualstudio.com/items?itemName=saegim.harbormaster) | VS Code · Marketplace | 에이전트가 켜 놓고 간 dev 서버를 프로젝트 이름으로 보여 주고 끈다. |
+| [배터리 셀 검사 HMI](https://0to1.saegim.studio/projects/cms/) | 산업용 · 납품 | 레거시 MFC 를 PySide6 로 다시 썼다. PLC 와 계측기, 256채널 순회, 11-state FSM. 실장비 없이 Mock 엔진으로 개발했다. |
+| [생성형 AI 행정비서](https://0to1.saegim.studio/projects/iop-as/) | 공공 SI · 프로덕션 | 실시간 LLM 스트리밍과 느린 RPA 를 하나의 대화로 묶었다. 프론트와 스트리밍 백엔드를 주도했다. |
 
 <br />
 
-### 죽인 것도 적습니다
+### 실험, 공모전, 소품
 
-**새김AI** &nbsp; 개인 데이터 위에서 도는 AI 비서를 "개인 데이터 AI OS" 로 키우다 범위가 커져 2026년 4월에 제품으로는 접었습니다. 엔진만 떼어 공개한 것이 위의 저장소 두 개입니다.
-
-<br />
-
-### 지금
-
-- noon: Apple Watch 앱. App Store 출시를 준비하고 있습니다.
-- 파고 있는 것: MCP, Claude Code 로 개발 자동화, LLM 평가의 신뢰성.
+[새김 Eval](https://github.com/gnldnd11/saegim-eval) 정답지 없이 LLM 출력을 채점한다. 교차 채점으로 자기 선호를 피하고, 심어 둔 환각을 심판이 잡는지로 심판을 검증한다. 매일 10시에 돌아간다.
+[그어봄](https://0to1.saegim.studio/projects/geoubom/) 단톡방의 공정한 중간 지점을 찾는 MCP. 카카오 AGENTIC PLAYER 10 출품, 탈락.
+[전투력 측정기](https://0to1.saegim.studio/projects/power-scanner/) 얼굴 68점 랜드마크로 전투력을 낸다. 온디바이스. 앱인토스 바이브코딩 챌린지.
+[한국어 LLM 벤치마크](https://0to1.saegim.studio/projects/ur-bmt/) GPT, HyperCLOVA X, Gemini 를 4개 축으로 같은 조건에서 비교. 사내 도구.
+[noon-desktop](https://0to1.saegim.studio/projects/noon-desktop/) noon 의 눈에 Claude 와 로컬 음성 인식을 붙인 macOS 프로토타입.
+[txtfy](https://0to1.saegim.studio/projects/txtfy/) · [transparentfy](https://0to1.saegim.studio/projects/transparentfy/) · [나라런](https://0to1.saegim.studio/projects/nararun/) 빌드 없는 단일 HTML 소품과 생일 선물 게임.
 
 <br />
 
-<sub>Python · TypeScript · Java &nbsp;|&nbsp; Next.js · React · FastAPI · Spring Boot &nbsp;|&nbsp; LangGraph · RAG · MCP &nbsp;|&nbsp; Firebase · Docker · Vercel</sub>
+### 접은 것
+
+[새김AI](https://github.com/gnldnd11/saegim-ai-backend) 2025.10 ~ 2026.04. 개인 데이터 AI OS 를 지향하다 24개 앱을 한 UI 에 뭉쳤고, 프론트 139,653줄 중 42% 가 진입로 없는 죽은 코드였습니다. "모든 걸 넣어서 아무것도 아니게 된" 종료작. 프레임워크 없이 함수콜링, 스트리밍, RAG, 에이전트 루프를 직접 짠 엔진만 떼어 공개했습니다. 실패한 제품이지만 성공한 학교였습니다.
+
+<br />
+
+<sub>Python · TypeScript · Swift · Java &nbsp;|&nbsp; Next.js · React · FastAPI · Spring Boot · SwiftUI · PySide6 &nbsp;|&nbsp; Claude · LangGraph · RAG · MCP &nbsp;|&nbsp; Firebase · Vercel · Docker · launchd</sub>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/gnldnd11/gnldnd11/output/github-contribution-grid-snake-dark.svg" />
   <img src="https://raw.githubusercontent.com/gnldnd11/gnldnd11/output/github-contribution-grid-snake.svg" alt="contribution snake" />
 </picture>
-
-<sub>기여 대부분이 비공개 저장소에 있어서 뱀이 먹을 게 별로 없습니다.</sub>
