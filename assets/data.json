@@ -1,0 +1,139 @@
+{
+  "fetched_at": "2026-09-15 15:56",
+  "lab": {
+    "as_of": "2026-09-14 23:13",
+    "status_line": "이상 없음",
+    "summary": "0to1 문서를 원장 12곳·위키 4곳 정정, 오프셋 b2139074했고, 동향 브리핑을 발행했고, 위키 1곳을 갱신했습니다. 그 외 자동화 4개는 정상입니다.",
+    "automations": [
+      {
+        "name": "동향 브리핑",
+        "last": "14시간 전",
+        "schedule": "매일 09:00",
+        "pct": 76,
+        "state": "불안정"
+      },
+      {
+        "name": "개발일지",
+        "last": "11분 전",
+        "schedule": "매일 23:00",
+        "pct": 84,
+        "state": "불안정"
+      },
+      {
+        "name": "사실원장 최신화",
+        "last": "방금",
+        "schedule": "매일 23:00",
+        "pct": 85,
+        "state": "불안정"
+      },
+      {
+        "name": "스토어 지표 수집",
+        "last": "방금",
+        "schedule": "매일 23:00",
+        "pct": 98,
+        "state": "정상"
+      },
+      {
+        "name": "문서 신선도",
+        "last": "방금",
+        "schedule": "매일 23:00",
+        "pct": 100,
+        "state": "정상"
+      },
+      {
+        "name": "원장 드리프트 감지",
+        "last": "11분 전",
+        "schedule": "매일 23:00",
+        "pct": 100,
+        "state": "정상"
+      },
+      {
+        "name": "새김 RAG eval",
+        "last": "2일 전",
+        "schedule": "온디맨드",
+        "pct": 100,
+        "state": "정상"
+      }
+    ],
+    "freshness": [
+      {
+        "name": "rag",
+        "score": 53
+      },
+      {
+        "name": "saegim-ai",
+        "score": 63
+      },
+      {
+        "name": "ai-harness",
+        "score": 67
+      },
+      {
+        "name": "0to1",
+        "score": 69
+      },
+      {
+        "name": "cms",
+        "score": 80
+      },
+      {
+        "name": "llm-judge",
+        "score": 91
+      },
+      {
+        "name": "mcp",
+        "score": 95
+      },
+      {
+        "name": "noon",
+        "score": 100
+      },
+      {
+        "name": "noon-desktop",
+        "score": 100
+      },
+      {
+        "name": "geoubom",
+        "score": 100
+      },
+      {
+        "name": "power-scanner",
+        "score": 100
+      },
+      {
+        "name": "saegim-eval",
+        "score": 100
+      },
+      {
+        "name": "claude-usage",
+        "score": 100
+      },
+      {
+        "name": "harbormaster",
+        "score": 100
+      },
+      {
+        "name": "ur-bmt",
+        "score": 100
+      },
+      {
+        "name": "realtime-render",
+        "score": 100
+      }
+    ]
+  },
+  "market": [
+    {
+      "id": "saegim.claude-usage-crab",
+      "name": "Claude Usage Crab",
+      "installs": 379,
+      "version": "1.13.0"
+    },
+    {
+      "id": "saegim.harbormaster",
+      "name": "Harbormaster",
+      "installs": 1,
+      "version": "0.7.2"
+    }
+  ]
+}

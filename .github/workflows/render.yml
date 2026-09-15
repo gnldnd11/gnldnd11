@@ -1,0 +1,43 @@
+name: render profile
+
+on:
+  schedule:
+    # 0to1 의 23:00 KST 야간 배치가 끝난 뒤 (23:40 KST = 14:40 UTC)
+    - cron: "40 14 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - ".github/workflows/render.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: render header and live board
+        env:
+          CHROME: google-chrome
+        run: python scripts/render.py
+
+      - name: commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets
+          if git diff --cached --quiet; then
+            echo "변경 없음"
+          else
+            git commit -m "chore(assets): 라이브 현황판을 다시 그린다"
+            git push
+          fi

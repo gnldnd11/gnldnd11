@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  html, body { margin: 0; width: 1200px; height: 640px; overflow: hidden; }
+  body {
+    font-family: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    color: $text; -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .card {
+    box-sizing: border-box; width: 1200px; height: 640px; padding: 40px 48px;
+    background: $paper; border: 1px solid $line; border-radius: 18px;
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(700px 260px at 100% 0%, $glow, transparent 65%);
+  }
+  .top { display: flex; align-items: baseline; justify-content: space-between; }
+  .live { font-size: 12px; font-weight: 700; letter-spacing: .28em; color: $accent; }
+  .live span { margin-left: 16px; font-weight: 500; letter-spacing: .04em; color: $dim; }
+  .src { font-size: 12px; letter-spacing: .04em; color: $dim; }
+  .status { margin-top: 20px; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: .06em; color: $ok_color; }
+  .status i { width: 8px; height: 8px; border-radius: 50%; background: $ok_color; box-shadow: 0 0 0 4px color-mix(in srgb, $ok_color 22%, transparent); }
+  .summary { margin-top: 10px; font-size: 15px; line-height: 1.55; color: $muted; max-width: 980px; }
+
+  .sec { margin-top: 26px; display: flex; align-items: baseline; gap: 10px; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: $dim; }
+  .sec b { color: $num; font-weight: 700; }
+  .sec i { flex: 1; height: 1px; background: $line; margin-left: 8px; }
+
+  .rows { margin-top: 12px; }
+  .row { display: grid; grid-template-columns: 170px 110px 1fr 64px 70px 110px; align-items: center; gap: 16px; height: 36px; }
+  .row + .row { border-top: 1px solid color-mix(in srgb, $line 60%, transparent); }
+  .name { font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
+  .meta { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; color: $dim; }
+  .bar { height: 6px; border-radius: 3px; background: $idle; overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 3px; }
+  .pct { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; font-weight: 700; text-align: right; }
+  .state { font-size: 12px; font-weight: 700; letter-spacing: .06em; }
+  .last { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; color: $dim; text-align: right; }
+
+  .fresh { margin-top: 14px; display: grid; grid-template-columns: repeat($n_fresh, 1fr); gap: 10px; }
+  .cell { text-align: center; }
+  .fbar { height: 44px; border-radius: 3px; background: $idle; position: relative; overflow: hidden; }
+  .fbar i { position: absolute; left: 0; right: 0; bottom: 0; display: block; }
+  .fscore { margin-top: 6px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; font-weight: 700; color: $text; }
+  .fname { margin-top: 2px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 10px; letter-spacing: .02em; color: $dim; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .foot { position: absolute; left: 48px; right: 48px; bottom: 30px; display: flex; justify-content: space-between; align-items: baseline; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; color: $dim; letter-spacing: .02em; }
+  .foot b { color: $text; font-weight: 700; }
+  .foot .note { font-family: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; letter-spacing: 0; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="top">
+    <div class="live mono">LIVE <span>$as_of 기준</span></div>
+    <div class="src mono">0to1.saegim.studio/lab</div>
+  </div>
+  <div class="status"><i></i>$ok_line</div>
+  <div class="summary">$summary</div>
+
+  <div class="sec mono">자동화 <b>$n_auto</b> <i></i></div>
+  <div class="rows">$rows</div>
+
+  <div class="sec mono">문서 신선도 <b>$n_fresh</b> <i></i></div>
+  <div class="fresh">$fresh</div>
+
+  <div class="foot">
+    <div>스토어 &nbsp; $market</div>
+    <div class="note">매일 밤 이 저장소의 워크플로우가 다시 그립니다</div>
+  </div>
+</div>
+</body>
+</html>
