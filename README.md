@@ -1,8 +1,5 @@
 ### 김휘웅
 
-혼자서 20개 넘는 프로젝트를 병렬로 굴립니다. 방향은 사람이 정하고, 나머지는 Claude Code 위에 만든 하네스가 돌립니다.
-만드는 과정과 죽인 것까지 [0to1](https://0to1.saegim.studio) 에 남깁니다. · [gnldnd125850@gmail.com](mailto:gnldnd125850@gmail.com)
-
 <br />
 
 <p>
