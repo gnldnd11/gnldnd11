@@ -18,23 +18,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
+          node-version: "20"
 
-      - name: render project cards
-        env:
-          CHROME: google-chrome
-        run: python scripts/render.py
+      - name: render bento tiles and README
+        run: node scripts/bento.mjs
 
       - name: commit if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets
+          git add assets README.md
           if git diff --cached --quiet; then
             echo "변경 없음"
           else
-            git commit -m "chore(assets): 프로젝트 카드를 다시 그린다"
+            git commit -m "chore(assets): 벤토 타일을 다시 그린다"
             git push
           fi

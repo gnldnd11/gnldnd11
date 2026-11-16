@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="426" height="245" viewBox="0 0 426 245" role="img" aria-label="배터리 셀 검사 HMI (납품) — 레거시 MFC 앱을 PySide6 로 다시 썼습니다. 미쓰비시 PLC 와 Hioki 계측기, 256채널 자동 순회, 11-state FSM. 실장비 없이 Mock 엔진으로 개발했습니다.">
+<title>배터리 셀 검사 HMI (납품) — 레거시 MFC 앱을 PySide6 로 다시 썼습니다. 미쓰비시 PLC 와 Hioki 계측기, 256채널 자동 순회, 11-state FSM. 실장비 없이 Mock 엔진으로 개발했습니다.</title>
+<foreignObject x="6" y="6" width="414" height="233"><div xmlns="http://www.w3.org/1999/xhtml" style="box-sizing:border-box;width:100%;height:100%;border-radius:18px;background:#F6F5F1;border:1px solid #E4E2DA;padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;font-family:Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', 'Segoe UI', sans-serif;color:#17171A;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span style="font-family:ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', 'D2Coding', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', monospace;font-size:11px;letter-spacing:0.03em;color:#66645E">산업용 · 프리랜서 납품 · 2026.03 ~</span><span style="font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid #1D4ED8;color:#1D4ED8;white-space:nowrap">납품</span></div>
+
+<div style="font-size:22px;font-weight:700;letter-spacing:-0.02em;line-height:1.3">배터리 셀 검사 HMI</div>
+<div style="font-size:13.5px;line-height:1.65;color:#3A3935;flex-grow:1">레거시 MFC 앱을 PySide6 로 다시 썼습니다. 미쓰비시 PLC 와 Hioki 계측기, 256채널 자동 순회, 11-state FSM. 실장비 없이 Mock 엔진으로 개발했습니다.</div>
+<div style="font-family:ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', 'D2Coding', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', monospace;font-size:11.5px;color:#66645E">Python · PySide6 · MX Component · RS-232C</div></div></foreignObject>
+</svg>

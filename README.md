@@ -1,26 +1,10 @@
-### 김휘웅
-
-<br />
-
+<!-- scripts/bento.mjs 가 만든다. 직접 고치지 말고 scripts/projects.json 을 고친다. -->
 <p>
-  <a href="https://0to1.saegim.studio/projects/noon/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/noon-dark.png" /><img src="assets/cards/noon-light.png" width="49%" alt="noon" /></picture></a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=saegim.claude-usage-crab"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/claude-usage-crab-dark.png" /><img src="assets/cards/claude-usage-crab-light.png" width="49%" alt="Claude Usage Crab" /></picture></a>
-</p>
-<p>
-  <a href="https://marketplace.visualstudio.com/items?itemName=saegim.harbormaster"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/harbormaster-dark.png" /><img src="assets/cards/harbormaster-light.png" width="49%" alt="Harbormaster" /></picture></a>
-  <a href="https://github.com/gnldnd11/saegim-eval"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/saegim-eval-dark.png" /><img src="assets/cards/saegim-eval-light.png" width="49%" alt="새김 Eval" /></picture></a>
-</p>
-<p>
-  <a href="https://0to1.saegim.studio/projects/cms/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/cms-dark.png" /><img src="assets/cards/cms-light.png" width="49%" alt="배터리 셀 검사 HMI" /></picture></a>
-  <a href="https://0to1.saegim.studio/projects/iop-as/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/iop-as-dark.png" /><img src="assets/cards/iop-as-light.png" width="49%" alt="생성형 AI 행정비서" /></picture></a>
-</p>
-<p>
-  <a href="https://0to1.saegim.studio/projects/geoubom/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/geoubom-dark.png" /><img src="assets/cards/geoubom-light.png" width="49%" alt="그어봄" /></picture></a>
-  <a href="https://0to1.saegim.studio/projects/power-scanner/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/power-scanner-dark.png" /><img src="assets/cards/power-scanner-light.png" width="49%" alt="전투력 측정기" /></picture></a>
-</p>
-<p>
-  <a href="https://0to1.saegim.studio/projects/ur-bmt/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/ur-bmt-dark.png" /><img src="assets/cards/ur-bmt-light.png" width="49%" alt="한국어 LLM 벤치마크" /></picture></a>
-  <a href="https://github.com/gnldnd11/saegim-ai-backend"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/saegim-ai-dark.png" /><img src="assets/cards/saegim-ai-light.png" width="49%" alt="새김AI" /></picture></a>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/bento/intro-dark.svg" /><img src="assets/bento/intro-light.svg" width="66.67%" alt="김휘웅 — AI 서비스 개발 · 프론트엔드 + 백엔드" /></picture><picture><source media="(prefers-color-scheme: dark)" srcset="assets/bento/stats-dark.svg" /><img src="assets/bento/stats-light.svg" width="33.33%" alt="프로젝트 10개" /></picture><br>
+<a href="https://0to1.saegim.studio/projects/noon/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/bento/noon-dark.svg" /><img src="assets/bento/noon-light.svg" width="33.33%" alt="noon (출시) — 손목 위에 사는 눈. 수치 대신 시선·깜빡임·글리치로만 말합니다. 텍스처 없이 매 프레임 벡터로 그리고, 감정은 9개 상태의 FSM 입니다." /></picture></a><a href="https://marketplace.visualstudio.com/items?itemName=saegim.claude-usage-crab"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/bento/claude-usage-crab-dark.svg" /><img src="assets/bento/claude-usage-crab-light.svg" width="33.33%" alt="Claude Usage Crab (출시) — 백그라운드 서브에이전트가 블랙박스라서 만들었습니다. Claude Code 가 협조하지 않으니 디스크와 네트워크에 흐르는 것만 읽습니다. 훅 없음, 빌드 없음." /></picture></a><a href="https://marketplace.visualstudio.com/items?itemName=saegim.harbormaster"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/bento/harbormaster-dark.svg" /><img src="assets/bento/harbormaster-light.svg" width="33.33%" alt="Harbormaster (출시) — 떠 있는 로컬 서버를 포트 번호가 아니라 프로젝트 이름으로 보여 줍니다. 에이전트가 켜 놓고 간 dev 서버를 사흘 뒤에 lsof 로 찾는 일을 없앱니다." /></picture></a><br>
+<a href="https://0to1.saegim.studio/projects/cms/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/bento/cms-dark.svg" /><img src="assets/bento/cms-light.svg" width="50.00%" alt="배터리 셀 검사 HMI (납품) — 레거시 MFC 앱을 PySide6 로 다시 썼습니다. 미쓰비시 PLC 와 Hioki 계측기, 256채널 자동 순회, 11-state FSM. 실장비 없이 Mock 엔진으로 개발했습니다." /></picture></a><a href="https://0to1.saegim.studio/projects/iop-as/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/bento/iop-as-dark.svg" /><img src="assets/bento/iop-as-light.svg" width="50.00%" alt="생성형 AI 행정비서 (프로덕션) — 실시간 LLM 스트리밍과 시간이 걸리는 RPA 를 사용자에게는 하나의 대화로 묶었습니다. 프론트와 스트리밍·통합 백엔드를 주도했습니다." /></picture></a><br>
+<a href="https://github.com/gnldnd11/saegim-eval"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/bento/saegim-eval-dark.svg" /><img src="assets/bento/saegim-eval-light.svg" width="33.33%" alt="새김 Eval (라이브) — 정답지 없이 LLM 출력을 채점합니다. Claude 는 GPT 가, GPT 는 Claude 가 채점해 자기 선호를 피하고, 심어 둔 환각을 심판이 잡는지로 심판을 검증합니다." /></picture></a><a href="https://0to1.saegim.studio/projects/geoubom/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/bento/geoubom-dark.svg" /><img src="assets/bento/geoubom-light.svg" width="33.33%" alt="그어봄 (공모전) — 단톡방의 공정한 중간 지점 top 3 를 카카오 길찾기로 계산하는 MCP. 최장 이동 시간 최소화를 우선합니다. 공모전은 탈락, 새김AI 가 실제로 씁니다." /></picture></a><a href="https://0to1.saegim.studio/projects/power-scanner/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/bento/power-scanner-dark.svg" /><img src="assets/bento/power-scanner-light.svg" width="33.33%" alt="전투력 측정기 (공모전) — 얼굴 68점 랜드마크로 전투력을 냅니다. 같은 얼굴은 같은 값이 나오도록 실측으로 검증했고, 사진은 기기 밖으로 나가지 않습니다." /></picture></a><br>
+<a href="https://0to1.saegim.studio/projects/ur-bmt/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/bento/ur-bmt-dark.svg" /><img src="assets/bento/ur-bmt-light.svg" width="50.00%" alt="한국어 LLM 벤치마크 (완료) — GPT, HyperCLOVA X, Gemini 를 K-MMLU, 공공정책, 번역, KLUE-NLI 네 축으로 같은 조건에서 비교합니다. 정답지가 있어야만 돌아가는 한계가 새김 Eval 로 이어졌습니다." /></picture></a><a href="https://github.com/gnldnd11/saegim-ai-backend"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/bento/saegim-ai-dark.svg" /><img src="assets/bento/saegim-ai-light.svg" width="50.00%" alt="새김AI (종료) — 모든 걸 넣어서 아무것도 아니게 된 종료작. 프레임워크 없이 함수콜링, 스트리밍, RAG, 에이전트 루프를 직접 짠 엔진만 떼어 공개했습니다." /></picture></a>
 </p>
 
 <br />
