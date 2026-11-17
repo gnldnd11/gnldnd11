@@ -13,20 +13,23 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = 'assets/bento';
 const PY = process.env.PYTHON || 'python';
 
-const PROFILE = { name: '김휘웅', handle: '@gnldnd11', role: 'AI 서비스 개발 · 프론트엔드 + 백엔드' };
+const PROFILE = { name: '김휘웅', handle: '@gnldnd11', role: 'AI 서비스 개발' };
 
 // 한 줄 = 6칸. span 은 칸 수, h 는 그 줄 높이(px). 썸네일은 scripts/thumbs.py 가 칸 수에 맞춰 자른다.
 const ROWS = [
   { h: 180, tiles: [{ id: 'intro', span: 4 }, { id: 'stats', span: 2 }] },
-  { h: 318, tiles: [{ id: 'noon', span: 2 }, { id: 'amajda-yak', span: 2 }, { id: 'the-ggi', span: 2 }] },
+  { h: 318, tiles: [{ id: 'noon', span: 2 }, { id: 'noon-desktop', span: 2 }, { id: 'amajda-yak', span: 2 }] },
+  { h: 296, tiles: [{ id: '0to1', span: 4 }, { id: 'nextcal', span: 2 }] },
   { h: 296, tiles: [{ id: 'cms', span: 3 }, { id: 'iop-as', span: 3 }] },
   { h: 318, tiles: [{ id: 'saegim-ai', span: 2 }, { id: 'saegim-works', span: 2 }, { id: 'saegim-eval', span: 2 }] },
+  { h: 296, tiles: [{ id: 'the-ggi', span: 3 }, { id: 'nararun', span: 3 }] },
   { h: 318, tiles: [{ id: 'claude-usage-crab', span: 2 }, { id: 'harbormaster', span: 2 }, { id: 'room-planner', span: 2 }] },
-  { h: 318, tiles: [{ id: 'geoubom', span: 2 }, { id: 'power-scanner', span: 2 }, { id: 'ur-bmt', span: 2 }] },
+  { h: 296, tiles: [{ id: 'transparentfy', span: 3 }, { id: 'ur-bmt', span: 3 }] },
+  { h: 318, tiles: [{ id: 'txtfy', span: 2 }, { id: 'geoubom', span: 2 }, { id: 'power-scanner', span: 2 }] },
 ];
 const THUMB_H = 190;
 const LOOK = { noon: 'watch' };
-const TONE = { 출시: 'ship', 라이브: 'live', 납품: 'live', 프로덕션: 'live', '운영 중': 'live', '개발 중': 'wip', 공모전: 'contest', 완료: 'done', 종료: 'done' };
+const TONE = { 출시: 'ship', 라이브: 'live', 납품: 'live', 프로덕션: 'live', '운영 중': 'live', '개발 중': 'wip', '실험 중': 'wip', 공모전: 'contest', 완료: 'done', 종료: 'done' };
 
 const TOTAL_W = 852; // 타일마다 바깥 6px 여백이 있어 이웃 타일 사이는 12px
 const M = 6;
@@ -110,7 +113,7 @@ function statsHtml(t) {
   return frame(c, `
 <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:38px;font-weight:700;line-height:1">${T(String(all.length), 700)}</span><span style="font-size:13px;color:${c.sub}">${T('프로젝트')}</span></div>
 <div style="flex-grow:1"></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;font-size:13px">${cells}</div>`, { pad: '22px 24px 20px', gap: '10px' });
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px 14px;font-size:12px;white-space:nowrap">${cells}</div>`, { pad: '22px 24px 20px', gap: '10px' });
 }
 
 const thumbCache = new Map();

@@ -149,8 +149,74 @@
     "tag": "웹 도구 · 2026.09 ~",
     "desc": "구조 템플릿을 고르고 벽을 내 방에 맞춘 뒤 가구를 놓으면, 문 열림과 60cm 통로를 판정기가 잽니다.",
     "stack": "TypeScript · Vite · SVG",
-    "status": "라이브",
+    "status": "실험 중",
     "kind": "ok",
     "url": "https://interior.saegim.studio"
+  },
+  {
+    "slug": "0to1",
+    "title": "0to1",
+    "line": "사람이 채우지 않는 개발 블로그. 일지와 지표를 매일 밤 기계가 굽습니다.",
+    "tag": "개발 블로그 · 위키 · 자동화 관제판",
+    "desc": "프로젝트 위키, 매일 밤 굽는 개발일지, 매일 아침 굽는 기술 동향, 자동화가 실제로 도는지 보여 주는 관제판.",
+    "stack": "Next.js 15 · TypeScript · Tailwind v4",
+    "status": "운영 중",
+    "kind": "ok",
+    "url": "https://0to1.saegim.studio"
+  },
+  {
+    "slug": "noon-desktop",
+    "title": "noon-desktop",
+    "line": "noon 의 눈을 macOS 데스크톱으로. 듣고, 말하고, 대화합니다.",
+    "tag": "macOS · 프로토타입",
+    "desc": "워치 noon 의 눈을 데스크톱에 상주시키고, 대화·로컬 STT·TTS·도구 호출을 붙인 실험.",
+    "stack": "Swift · Claude API · STT · TTS",
+    "status": "실험 중",
+    "kind": "accent",
+    "url": "https://0to1.saegim.studio/projects/noon-desktop/"
+  },
+  {
+    "slug": "nextcal",
+    "title": "nextcal",
+    "line": "다음 일정을 VS Code 상태 표시줄과 바탕화면 달력에 띄웁니다.",
+    "tag": "VS Code · Electron · 개인 도구",
+    "desc": "일정을 늘 보이는 자리에 두는 개인 도구. VS Code 확장과 Windows 바탕화면 월 달력.",
+    "stack": "TypeScript · VS Code API · Electron",
+    "status": "운영 중",
+    "kind": "ok",
+    "url": "https://0to1.saegim.studio/projects/nextcal/"
+  },
+  {
+    "slug": "nararun",
+    "title": "나라런",
+    "line": "생일 선물로 만든 러닝 게임. 같이 갔던 길을 달리며 글자를 모읍니다.",
+    "tag": "웹 게임 · 선물",
+    "desc": "실제 도시를 달리며 흩어진 글자를 주워 HAPPY BIRTHDAY 를 완성하는 러닝 게임.",
+    "stack": "TypeScript · Canvas",
+    "status": "완료",
+    "kind": "dim",
+    "url": "https://0to1.saegim.studio/projects/nararun/"
+  },
+  {
+    "slug": "transparentfy",
+    "title": "TRANSPARENTFY",
+    "line": "이미지를 던지면 배경이 사라지는 배경 제거기.",
+    "tag": "웹 도구",
+    "desc": "이미지를 던지면 배경이 사라지는 웹 도구.",
+    "stack": "TypeScript · Vercel",
+    "status": "라이브",
+    "kind": "ok",
+    "url": "https://transparentfy.vercel.app"
+  },
+  {
+    "slug": "txtfy",
+    "title": "txtfy",
+    "line": "입력한 글자가 날아와 캐릭터로 조립되는 GIF 도구.",
+    "tag": "웹 도구",
+    "desc": "글자가 사방에서 날아와 캐릭터 모양으로 조립되고 살아 움직이며, GIF 로 내려받을 수 있습니다.",
+    "stack": "TypeScript · Canvas · GIF",
+    "status": "라이브",
+    "kind": "ok",
+    "url": "https://txtfy.vercel.app"
   }
 ]

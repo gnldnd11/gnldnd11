@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<!-- nextcal 썸네일. 260×190 을 2배로 찍는다(scripts/art.py). 바탕화면 월 달력 + VS Code 상태 표시줄. -->
+<style>
+@font-face{font-family:P;font-weight:400;src:url(../../fonts/Paperlogy-4Regular.woff2)}
+@font-face{font-family:P;font-weight:600;src:url(../../fonts/Paperlogy-6SemiBold.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(../../fonts/Paperlogy-7Bold.woff2)}
+html,body{margin:0;width:260px;height:190px;overflow:hidden}
+body{font-family:P,sans-serif;color:#E2E8F0;background:linear-gradient(150deg,#1E3A5F 0%,#0F172A 70%);position:relative;-webkit-font-smoothing:antialiased}
+.cal{position:absolute;left:16px;right:16px;top:14px;background:#0F172ACC;border:1px solid #33415588;border-radius:12px;padding:10px 11px 8px}
+.hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.hd b{font-size:13px;font-weight:700}
+.hd span{font-size:8px;color:#94A3B8;letter-spacing:.08em}
+.g{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.g i{font-style:normal;font-size:7.5px;color:#94A3B8;height:15px;border-radius:4px;padding:2px 3px;box-sizing:border-box;position:relative;background:#1E293B66}
+.g i.w{background:none;height:auto;text-align:center;color:#64748B;font-weight:600}
+.g i.o{color:#475569;background:none}
+.g i.t{background:#3B82F6;color:#fff;font-weight:700}
+.g i u{position:absolute;left:3px;right:3px;bottom:2px;height:2px;border-radius:1px;background:#F59E0B}
+.g i u.b{background:#22D3EE}
+.bar{position:absolute;left:0;right:0;bottom:0;height:22px;background:#007ACC;display:flex;align-items:center;gap:10px;padding:0 10px;font-size:9px;color:#fff;font-weight:600}
+.bar em{font-style:normal;opacity:.75;font-weight:400}
+.bar .now{margin-left:auto;background:#ffffff26;padding:2px 7px;border-radius:4px}
+</style></head><body>
+<div class="cal">
+  <div class="hd"><b>11월</b><span>NEXTCAL</span></div>
+  <div class="g" id="g"></div>
+</div>
+<div class="bar"><em>main ↻</em><em>Ln 42, Col 8</em><span class="now">◷ 14:00 주간 회의 · 23분 뒤</span></div>
+<script>
+const g = document.getElementById("g");
+for (const w of "일월화수목금토") { const i = document.createElement("i"); i.className = "w"; i.textContent = w; g.appendChild(i); }
+const ev = { 3: "a", 7: "b", 11: "a", 14: "b", 17: "a", 20: "b", 24: "a", 27: "a" };
+for (let k = 0; k < 28; k++) {
+  const d = k - 5, i = document.createElement("i");
+  if (d < 1) { i.className = "o"; i.textContent = 31 + d; }
+  else {
+    i.textContent = d;
+    if (d === 17) i.className = "t";
+    if (ev[d]) { const u = document.createElement("u"); if (ev[d] === "b") u.className = "b"; i.appendChild(u); }
+  }
+  g.appendChild(i);
+}
+</script>
+</body></html>
