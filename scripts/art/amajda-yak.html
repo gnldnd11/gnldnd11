@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<!-- 아맞다약 썸네일. 260×190 을 2배로 찍는다(scripts/art.py). 시안 C-1 아일랜드 확장·B-1 오늘 카드를 옮겼다. -->
+<style>
+@font-face{font-family:P;font-weight:400;src:url(../../fonts/Paperlogy-4Regular.woff2)}
+@font-face{font-family:P;font-weight:600;src:url(../../fonts/Paperlogy-6SemiBold.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(../../fonts/Paperlogy-7Bold.woff2)}
+html,body{margin:0;width:260px;height:190px;overflow:hidden}
+body{font-family:P,sans-serif;background:radial-gradient(130% 120% at 50% 0%,#F7F7F3 0%,#E9EAE3 100%);position:relative;-webkit-font-smoothing:antialiased}
+.mono{font-family:"Cascadia Mono",Consolas,monospace;font-weight:700}
+.phone{position:absolute;left:30px;right:30px;top:14px;height:220px;border-radius:34px;background:#DCDDD6;box-shadow:inset 0 0 0 5px #1B1B1D,0 10px 30px #0000002a}
+.isl{position:absolute;left:12px;right:12px;top:11px;background:#000;border-radius:24px;padding:12px 13px 12px;color:#fff;display:flex;flex-direction:column;gap:9px}
+.cam{position:absolute;left:50%;top:6px;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:#1C1C1E}
+.hd{display:flex;align-items:center;gap:9px}
+.eyes{display:flex;gap:4px}
+.eyes i{width:9px;height:13px;border-radius:5px;background:#5BE38A;box-shadow:0 0 6px #5BE38A88}
+.t{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+.t b{font-size:11px;font-weight:700;white-space:nowrap}
+.t span{font-size:8.5px;color:#A1A1A6}
+.cd{font-size:15px;color:#5BE38A;letter-spacing:-.02em}
+.pills{display:flex;align-items:center;gap:6px;background:#1C1C1E;border-radius:10px;padding:6px 8px}
+.p1{width:13px;height:13px;border-radius:50%;background:#F4F4F1;border:1px solid #CFCFCA;box-sizing:border-box;position:relative}
+.p1:after{content:"";position:absolute;left:2px;right:2px;top:5px;height:1.5px;background:#9A9A95;transform:rotate(-25deg)}
+.p2{width:18px;height:11px;border-radius:50%;background:#F2C94C;box-shadow:inset 0 -2px 0 #D9AE2C}
+.p3{width:18px;height:8px;border-radius:5px;background:linear-gradient(90deg,#F4F4F1 50%,#F28FA8 50%);transform:rotate(-30deg)}
+.pills em{margin-left:auto;font-style:normal;font-size:8px;color:#A1A1A6}
+.btn{display:flex;gap:6px}
+.btn span{flex:1;text-align:center;font-size:10px;font-weight:700;padding:6px 0;border-radius:999px}
+</style></head><body>
+<div class="phone">
+  <div class="isl">
+    <div class="cam"></div>
+    <div class="hd">
+      <div class="eyes"><i></i><i></i></div>
+      <div class="t"><b>아침 식후 · 3개</b><span>08:22 복용</span></div>
+      <div class="cd mono">04:59</div>
+    </div>
+    <div class="pills"><span class="p1"></span><span class="p2"></span><span class="p3"></span><em>식후 30분</em></div>
+    <div class="btn"><span style="background:#5BE38A;color:#0B2A16">모두 복용</span><span style="background:#2C2C2E;color:#E5E5EA">10분 뒤</span></div>
+  </div>
+</div>
+</body></html>

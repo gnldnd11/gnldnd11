@@ -18,14 +18,14 @@ const PROFILE = { name: '김휘웅', handle: '@gnldnd11', role: 'AI 서비스 �
 // 한 줄 = 6칸. span 은 칸 수, h 는 그 줄 높이(px). 썸네일은 scripts/thumbs.py 가 칸 수에 맞춰 자른다.
 const ROWS = [
   { h: 180, tiles: [{ id: 'intro', span: 4 }, { id: 'stats', span: 2 }] },
-  { h: 318, tiles: [{ id: 'noon', span: 2 }, { id: 'claude-usage-crab', span: 2 }, { id: 'harbormaster', span: 2 }] },
+  { h: 318, tiles: [{ id: 'noon', span: 2 }, { id: 'amajda-yak', span: 2 }, { id: 'claude-usage-crab', span: 2 }] },
   { h: 296, tiles: [{ id: 'cms', span: 3 }, { id: 'iop-as', span: 3 }] },
   { h: 318, tiles: [{ id: 'saegim-eval', span: 2 }, { id: 'geoubom', span: 2 }, { id: 'power-scanner', span: 2 }] },
-  { h: 296, tiles: [{ id: 'ur-bmt', span: 3 }, { id: 'saegim-ai', span: 3 }] },
+  { h: 318, tiles: [{ id: 'harbormaster', span: 2 }, { id: 'ur-bmt', span: 2 }, { id: 'saegim-ai', span: 2 }] },
 ];
 const THUMB_H = 190;
-const LOOK = { noon: 'watch', 'saegim-ai': 'muted' };
-const TONE = { 출시: 'ship', 라이브: 'live', 납품: 'live', 프로덕션: 'live', 공모전: 'contest', 완료: 'done', 종료: 'done' };
+const LOOK = { noon: 'watch' };
+const TONE = { 출시: 'ship', 라이브: 'live', 납품: 'live', 프로덕션: 'live', '운영 중': 'live', '개발 중': 'wip', 공모전: 'contest', 완료: 'done', 종료: 'done' };
 
 const TOTAL_W = 852; // 타일마다 바깥 6px 여백이 있어 이웃 타일 사이는 12px
 const M = 6;
@@ -38,14 +38,14 @@ const THEMES = {
     invert: { bg: '#17171A', border: '1px solid #17171A', fg: '#F2F1EC', sub: '#B9B7AF', body: '#D6D4CC' },
     watch: { bg: '#000000', border: '1px solid #000000', fg: '#F2F1EC', sub: '#B9B7AF', body: '#D6D4CC', line: '#000000' },
     muted: { bg: 'transparent', border: '1.5px dashed #C9C6BC', fg: '#3A3935', sub: '#66645E', body: '#4A4843', line: '#E4E2DA' },
-    tone: { ship: '#C2410C', live: '#1D4ED8', contest: '#6D28D9', done: '#66645E' },
+    tone: { ship: '#C2410C', live: '#1D4ED8', contest: '#6D28D9', wip: '#B45309', done: '#66645E' },
   },
   dark: {
     base: { bg: '#161B22', border: '1px solid #30363D', fg: '#E6EDF3', sub: '#9198A1', body: '#C9D1D9', line: '#30363D' },
     invert: { bg: '#F2F1EC', border: '1px solid #F2F1EC', fg: '#17171A', sub: '#5E5C57', body: '#3A3935' },
     watch: { bg: '#000000', border: '1px solid #30363D', fg: '#E6EDF3', sub: '#9198A1', body: '#C9D1D9', line: '#000000' },
     muted: { bg: 'transparent', border: '1.5px dashed #3D444D', fg: '#C9D1D9', sub: '#9198A1', body: '#9198A1', line: '#30363D' },
-    tone: { ship: '#F0883E', live: '#58A6FF', contest: '#BC8CFF', done: '#9198A1' },
+    tone: { ship: '#F0883E', live: '#58A6FF', contest: '#BC8CFF', wip: '#D29922', done: '#9198A1' },
   },
 };
 
@@ -168,7 +168,7 @@ for (const row of ROWS) {
       prev[name].push(`<img src="${OUT}/${tile.id}-${name}.svg" style="width:${pct}">`);
     }
     const img = `<picture><source media="(prefers-color-scheme: dark)" srcset="${OUT}/${tile.id}-dark.svg" /><img src="${OUT}/${tile.id}-light.svg" width="${pct}" alt="${esc(label)}" /></picture>`;
-    cells.push(p ? `<a href="${esc(p.url)}">${img}</a>` : img);
+    cells.push(p?.url ? `<a href="${esc(p.url)}">${img}</a>` : img);
   }
   readmeRows.push(cells.join(''));
   preview.light.push(`<div class="row">${prev.light.join('')}</div>`);

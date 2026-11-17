@@ -15,7 +15,8 @@ ROOT = Path(__file__).resolve().parent.parent
 ART = ROOT / "scripts" / "art"
 OUT = ROOT / "assets" / "thumbs"
 CHROME = os.environ.get("CHROME", r"C:\Program Files\Google\Chrome\Application\chrome.exe")
-W, H = 402, 190  # 2배로 찍어 804×380(span 3 썸네일)
+SIZE = {2: (260, 190), 3: (402, 190)}  # 2배로 찍는다. thumbs.py 의 SIZE 와 같다
+SPAN = {"amajda-yak": 2, "saegim-ai": 2}  # 없으면 3
 
 
 def main():
@@ -24,7 +25,7 @@ def main():
         for slug in slugs:
             png = Path(tmp) / f"{slug}.png"
             subprocess.run([CHROME, "--headless=new", "--hide-scrollbars", f"--user-data-dir={tmp}/prof",
-                            f"--window-size={W},{H}", "--force-device-scale-factor=2", "--virtual-time-budget=3000",
+                            "--window-size=%d,%d" % SIZE[SPAN.get(slug, 3)], "--force-device-scale-factor=2", "--virtual-time-budget=3000",
                             f"--screenshot={png}", (ART / f"{slug}.html").as_uri()], check=True, capture_output=True)
             path = OUT / f"{slug}.jpg"
             Image.open(png).convert("RGB").save(path, "JPEG", quality=88, optimize=True, progressive=True)

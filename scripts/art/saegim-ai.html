@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<!-- 새김AI 썸네일. 260×190 을 2배로 찍는다(scripts/art.py). 프레임워크 없이 직접 짠 엔진의 네 부품. -->
+<style>
+@font-face{font-family:P;font-weight:400;src:url(../../fonts/Paperlogy-4Regular.woff2)}
+@font-face{font-family:P;font-weight:600;src:url(../../fonts/Paperlogy-6SemiBold.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(../../fonts/Paperlogy-7Bold.woff2)}
+html,body{margin:0;width:260px;height:190px;overflow:hidden}
+body{font-family:P,sans-serif;color:#F5EFE6;background:radial-gradient(90% 90% at 50% 50%,#2A1A10 0%,#140E0A 60%,#0C0907 100%);position:relative;-webkit-font-smoothing:antialiased}
+svg{position:absolute;inset:0}
+.core{position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFB86B,#F97316 55%,#9A3412);box-shadow:0 0 30px #F9731688,0 0 0 6px #F9731622;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#1A0E05}
+.core b{font-size:14px;font-weight:700;letter-spacing:-.02em}
+.core span{font-size:8px;font-weight:600;opacity:.75}
+.chip{position:absolute;font-size:10px;font-weight:600;padding:5px 9px;border-radius:999px;background:#1F1610;border:1px solid #F9731666;color:#FED7AA;white-space:nowrap}
+.fw{position:absolute;left:0;right:0;bottom:9px;text-align:center;font-size:8.5px;font-weight:600;letter-spacing:.14em;color:#A8957F}
+.fw s{color:#7C6A58}
+</style></head><body>
+<svg width="260" height="190" viewBox="0 0 260 190">
+  <circle cx="130" cy="92" r="58" fill="none" stroke="#F9731655" stroke-width="1.2" stroke-dasharray="3 4"/>
+  <path d="M 172 52 A 58 58 0 0 1 188 92" fill="none" stroke="#FDBA74" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 184 82 L 188 92 L 194 83" fill="none" stroke="#FDBA74" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g stroke="#F9731644" stroke-width="1">
+    <line x1="130" y1="92" x2="58" y2="38"/><line x1="130" y1="92" x2="202" y2="38"/>
+    <line x1="130" y1="92" x2="58" y2="146"/><line x1="130" y1="92" x2="202" y2="146"/>
+  </g>
+</svg>
+<div class="core"><b>새김</b><span>ENGINE</span></div>
+<div class="chip" style="left:18px;top:24px">함수 호출</div>
+<div class="chip" style="right:18px;top:24px">스트리밍</div>
+<div class="chip" style="left:30px;top:132px">RAG</div>
+<div class="chip" style="right:14px;top:132px">에이전트 루프</div>
+<div class="fw"><s>LANGCHAIN</s> · <s>LLAMAINDEX</s> · 직접 짠 것만</div>
+</body></html>
