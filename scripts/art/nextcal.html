@@ -18,18 +18,18 @@ body{font-family:P,sans-serif;color:#E2E8F0;background:linear-gradient(150deg,#1
 .g i.t{background:#3B82F6;color:#fff;font-weight:700}
 .g i u{position:absolute;left:3px;right:3px;bottom:2px;height:2px;border-radius:1px;background:#F59E0B}
 .g i u.b{background:#22D3EE}
-.bar{position:absolute;left:0;right:0;bottom:0;height:22px;background:#007ACC;display:flex;align-items:center;gap:10px;padding:0 10px;font-size:9px;color:#fff;font-weight:600}
+.bar{white-space:nowrap;position:absolute;left:0;right:0;bottom:0;height:22px;background:#007ACC;display:flex;align-items:center;gap:10px;padding:0 10px;font-size:9px;color:#fff;font-weight:600}
 .bar em{font-style:normal;opacity:.75;font-weight:400}
 .bar .now{margin-left:auto;background:#ffffff26;padding:2px 7px;border-radius:4px}
 </style></head><body>
 <div class="cal">
-  <div class="hd"><b>11월</b><span>NEXTCAL</span></div>
+  <div class="hd"><b>November</b><span>NEXTCAL</span></div>
   <div class="g" id="g"></div>
 </div>
-<div class="bar"><em>main ↻</em><em>Ln 42, Col 8</em><span class="now">◷ 14:00 주간 회의 · 23분 뒤</span></div>
+<div class="bar"><em>main ↻</em><span class="now">◷ 14:00 Weekly sync · in 23m</span></div>
 <script>
 const g = document.getElementById("g");
-for (const w of "일월화수목금토") { const i = document.createElement("i"); i.className = "w"; i.textContent = w; g.appendChild(i); }
+for (const w of "SMTWTFS") { const i = document.createElement("i"); i.className = "w"; i.textContent = w; g.appendChild(i); }
 const ev = { 3: "a", 7: "b", 11: "a", 14: "b", 17: "a", 20: "b", 24: "a", 27: "a" };
 for (let k = 0; k < 28; k++) {
   const d = k - 5, i = document.createElement("i");
