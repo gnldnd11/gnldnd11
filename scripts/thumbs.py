@@ -15,13 +15,11 @@ OUT = ROOT / "assets" / "thumbs"
 SIZE = {2: (520, 380), 3: (804, 380)}
 
 # slug: (원본, 칸 수, 자를 상자 또는 None, 맞춤 방식)
-THUMBS = {
+THUMBS = {  # cms, iop-as 는 scripts/art.py 가 그린다
     "noon": ("projects/noon-watch.png", 2, None, "contain"),
     "claude-usage-crab": ("uploads/claude-usage-agents-room.png", 2, (110, 300, 576, 640), "cover"),
     "harbormaster": ("uploads/harbormaster-panel.png", 2, (0, 0, 518, 378), "cover"),
     "saegim-eval": ("img/shots/eval.png", 2, (200, 20, 1380, 881), "cover"),
-    "cms": ("uploads/cms-cycle.png", 3, (60, 20, 1760, 830), "cover"),
-    "iop-as": ("uploads/iop-as-arch.png", 3, (100, 0, 1380, 610), "cover"),
     "geoubom": ("projects/geoubom-mcp.png", 2, (0, 90, 618, 541), "cover"),
     "power-scanner": ("uploads/power-scanner-entry.png", 2, (0, 320, 636, 784), "cover"),
     "ur-bmt": ("uploads/ur-bmt-chart.png", 3, (20, 0, 1070, 500), "cover"),
