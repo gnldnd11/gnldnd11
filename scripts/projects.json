@@ -119,5 +119,38 @@
     "status": "운영 중",
     "kind": "ok",
     "url": "https://github.com/gnldnd11/saegim-ai-backend"
+  },
+  {
+    "slug": "the-ggi",
+    "title": "THE GGI",
+    "line": "도끼 하나로 다 하는 복셀 1인칭 RPG. 에셋 없이 전부 코드로 굽습니다.",
+    "tag": "복셀 3D 게임 · 2026.08 ~",
+    "desc": "나무도 광물도 전투도 전부 도끼로 하는 1인칭 액션 어드벤처. 형태는 복셀 배열을 코드로 생성하고, 외부 3D 에셋은 쓰지 않습니다.",
+    "stack": "TypeScript · React Three Fiber · Three.js",
+    "status": "개발 중",
+    "kind": "accent",
+    "url": "https://0to1.saegim.studio/projects/the-ggi/"
+  },
+  {
+    "slug": "saegim-works",
+    "title": "새김 웍스",
+    "line": "새김AI 검색 엔진을 다루고 MCP 로 내보내는 개발자 콘솔.",
+    "tag": "개발자 콘솔 · 2026.07 ~",
+    "desc": "자료를 지식베이스로 묶고, 검색 값을 밀어 시험하고, 그 조합을 앱으로 굳혀 MCP 주소로 내보냅니다.",
+    "stack": "React · TypeScript · Firebase",
+    "status": "운영 중",
+    "kind": "ok",
+    "url": "https://0to1.saegim.studio/projects/saegim-works/"
+  },
+  {
+    "slug": "room-planner",
+    "title": "원룸 평면도",
+    "line": "도면 없는 원룸에 내 가구가 들어가는지 재 주는 평면도 도구.",
+    "tag": "웹 도구 · 2026.09 ~",
+    "desc": "구조 템플릿을 고르고 벽을 내 방에 맞춘 뒤 가구를 놓으면, 문 열림과 60cm 통로를 판정기가 잽니다.",
+    "stack": "TypeScript · Vite · SVG",
+    "status": "라이브",
+    "kind": "ok",
+    "url": "https://interior.saegim.studio"
   }
 ]

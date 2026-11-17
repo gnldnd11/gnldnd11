@@ -15,7 +15,7 @@ OUT = ROOT / "assets" / "thumbs"
 SIZE = {2: (520, 380), 3: (804, 380)}
 
 # slug: (원본, 칸 수, 자를 상자 또는 None, 맞춤 방식)
-THUMBS = {  # cms, iop-as, amajda-yak, saegim-ai 는 scripts/art.py 가 그린다
+THUMBS = {  # cms, iop-as, amajda-yak, saegim-ai, saegim-works 는 scripts/art.py 가 그린다
     "noon": ("projects/noon-watch.png", 2, None, "contain"),
     "claude-usage-crab": ("uploads/claude-usage-agents-room.png", 2, (110, 300, 576, 640), "cover"),
     "harbormaster": ("uploads/harbormaster-panel.png", 2, (0, 0, 518, 378), "cover"),
@@ -23,6 +23,9 @@ THUMBS = {  # cms, iop-as, amajda-yak, saegim-ai 는 scripts/art.py 가 그린�
     "geoubom": ("projects/geoubom-mcp.png", 2, (0, 90, 618, 541), "cover"),
     "power-scanner": ("uploads/power-scanner-entry.png", 2, (0, 320, 636, 784), "cover"),
     "ur-bmt": ("uploads/ur-bmt-chart.png", 2, (0, 0, 690, 500), "cover"),
+    # 아래 둘은 0to1 옆 프로젝트 폴더의 자료다
+    "the-ggi": ("../../the-ggi/docs/look/screenshots/20260830/01. 성역 바닥텍스쳐.png", 2, (1240, 0, 3840, 1900), "cover"),
+    "room-planner": ("../../room-planner/docs/mockup-main.png", 2, (330, 190, 900, 607), "cover"),
 }
 
 

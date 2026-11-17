@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<!-- 새김 웍스 썸네일. 260×190 을 2배로 찍는다(scripts/art.py). 지식베이스 → 시험대 → 앱 → MCP 주소. -->
+<style>
+@font-face{font-family:P;font-weight:400;src:url(../../fonts/Paperlogy-4Regular.woff2)}
+@font-face{font-family:P;font-weight:600;src:url(../../fonts/Paperlogy-6SemiBold.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(../../fonts/Paperlogy-7Bold.woff2)}
+html,body{margin:0;width:260px;height:190px;overflow:hidden}
+body{font-family:P,sans-serif;color:#1C1917;background:linear-gradient(160deg,#FFF7ED 0%,#FDE7D3 100%);position:relative;-webkit-font-smoothing:antialiased}
+.mono{font-family:"Cascadia Mono",Consolas,monospace}
+.win{position:absolute;left:16px;right:16px;top:16px;bottom:-10px;background:#fff;border-radius:12px;box-shadow:0 10px 28px #9A341224;overflow:hidden;display:flex}
+.side{width:52px;background:#1C1917;padding:22px 0 0;display:flex;flex-direction:column;gap:7px;align-items:center}
+.side i{width:30px;height:6px;border-radius:3px;background:#44403C}
+.side i.on{background:#F97316}
+.dots{position:absolute;left:8px;top:7px;display:flex;gap:3px}.dots b{width:5px;height:5px;border-radius:50%;background:#57534E}
+.main{flex:1;padding:12px 12px 0;display:flex;flex-direction:column;gap:8px}
+.hd{display:flex;justify-content:space-between;align-items:center}
+.hd b{font-size:11px;font-weight:700}
+.hd span{font-size:7.5px;font-weight:700;letter-spacing:.1em;color:#C2410C;background:#FFEDD5;padding:2px 6px;border-radius:999px}
+.sl{display:flex;flex-direction:column;gap:5px}
+.r{display:flex;align-items:center;gap:6px;font-size:8px;color:#78716C}
+.r em{font-style:normal;width:34px}
+.tr{flex:1;height:3px;border-radius:2px;background:#F5F5F4;position:relative}
+.tr i{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:#F97316}
+.tr u{position:absolute;top:-3px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#fff;border:2px solid #F97316;box-sizing:border-box}
+.r b{font-size:8px;color:#1C1917;width:18px;text-align:right}
+.mcp{margin-top:2px;background:#1C1917;border-radius:8px;padding:7px 9px;display:flex;flex-direction:column;gap:3px}
+.mcp span{font-size:7px;font-weight:700;letter-spacing:.12em;color:#A8A29E}
+.mcp b{font-size:9.5px;color:#FDBA74;font-weight:700}
+.kb{display:flex;gap:4px}
+.kb span{font-size:7.5px;font-weight:600;padding:2px 6px;border-radius:5px;background:#F5F5F4;color:#57534E}
+</style></head><body>
+<div class="win">
+  <div class="side"><div class="dots"><b></b><b></b><b></b></div><i></i><i class="on"></i><i></i><i></i></div>
+  <div class="main">
+    <div class="hd"><b>원두 자료 바리스타</b><span>APP</span></div>
+    <div class="kb"><span>원두 노트</span><span>추출 기록</span><span>+2</span></div>
+    <div class="sl">
+      <div class="r"><em>top_k</em><div class="tr"><i style="width:40%"></i><u style="left:40%"></u></div><b>8</b></div>
+      <div class="r"><em>유사도</em><div class="tr"><i style="width:72%"></i><u style="left:72%"></u></div><b>0.72</b></div>
+      <div class="r"><em>재순위</em><div class="tr"><i style="width:55%"></i><u style="left:55%"></u></div><b>on</b></div>
+    </div>
+    <div class="mcp"><span>MCP ENDPOINT</span><b class="mono">api.saegim.studio/mcp</b></div>
+  </div>
+</div>
+</body></html>

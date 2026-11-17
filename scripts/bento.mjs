@@ -18,10 +18,11 @@ const PROFILE = { name: '김휘웅', handle: '@gnldnd11', role: 'AI 서비스 �
 // 한 줄 = 6칸. span 은 칸 수, h 는 그 줄 높이(px). 썸네일은 scripts/thumbs.py 가 칸 수에 맞춰 자른다.
 const ROWS = [
   { h: 180, tiles: [{ id: 'intro', span: 4 }, { id: 'stats', span: 2 }] },
-  { h: 318, tiles: [{ id: 'noon', span: 2 }, { id: 'amajda-yak', span: 2 }, { id: 'claude-usage-crab', span: 2 }] },
+  { h: 318, tiles: [{ id: 'noon', span: 2 }, { id: 'amajda-yak', span: 2 }, { id: 'the-ggi', span: 2 }] },
   { h: 296, tiles: [{ id: 'cms', span: 3 }, { id: 'iop-as', span: 3 }] },
-  { h: 318, tiles: [{ id: 'saegim-eval', span: 2 }, { id: 'geoubom', span: 2 }, { id: 'power-scanner', span: 2 }] },
-  { h: 318, tiles: [{ id: 'harbormaster', span: 2 }, { id: 'ur-bmt', span: 2 }, { id: 'saegim-ai', span: 2 }] },
+  { h: 318, tiles: [{ id: 'saegim-ai', span: 2 }, { id: 'saegim-works', span: 2 }, { id: 'saegim-eval', span: 2 }] },
+  { h: 318, tiles: [{ id: 'claude-usage-crab', span: 2 }, { id: 'harbormaster', span: 2 }, { id: 'room-planner', span: 2 }] },
+  { h: 318, tiles: [{ id: 'geoubom', span: 2 }, { id: 'power-scanner', span: 2 }, { id: 'ur-bmt', span: 2 }] },
 ];
 const THUMB_H = 190;
 const LOOK = { noon: 'watch' };
