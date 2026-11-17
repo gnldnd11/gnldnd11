@@ -16,7 +16,7 @@ ART = ROOT / "scripts" / "art"
 OUT = ROOT / "assets" / "thumbs"
 CHROME = os.environ.get("CHROME", r"C:\Program Files\Google\Chrome\Application\chrome.exe")
 SIZE = {2: (260, 190), 3: (402, 190)}  # 2배로 찍는다. thumbs.py 의 SIZE 와 같다
-SPAN = {"amajda-yak": 2, "saegim-ai": 2, "saegim-works": 2}  # 없으면 3
+SPAN = {"amajda-yak": 2, "saegim-works": 2}  # 없으면 3
 
 
 def main():
