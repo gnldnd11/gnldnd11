@@ -13,18 +13,20 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = 'assets/bento';
 const PY = process.env.PYTHON || 'python';
 
-const PROFILE = { name: 'Hwiwoong Kim', handle: '@gnldnd11', role: 'Building AI services' };
+const PROFILE = { name: 'Hwiwoong Kim', handle: '@gnldnd11', role: 'AI Engineer · LLM apps, RAG, agents and evals' };
 
 // 한 줄 = 6칸. span 은 칸 수, h 는 그 줄 높이(px). 썸네일은 scripts/thumbs.py 가 칸 수에 맞춰 자른다.
 const ROWS = [
   { h: 180, tiles: [{ id: 'intro', span: 4 }, { id: 'stats', span: 2 }] },
+  { heading: 'Featured · AI systems' },
+  { h: 296, tiles: [{ id: 'iop-as', span: 3 }, { id: 'saegim-ai', span: 3 }] },
+  { h: 318, tiles: [{ id: 'saegim-works', span: 2 }, { id: 'saegim-eval', span: 2 }, { id: 'ur-bmt', span: 2 }] },
+  { heading: 'More projects' },
   { h: 318, tiles: [{ id: 'noon', span: 2 }, { id: 'noon-desktop', span: 2 }, { id: 'amajda-yak', span: 2 }] },
   { h: 296, tiles: [{ id: '0to1', span: 4 }, { id: 'nextcal', span: 2 }] },
-  { h: 296, tiles: [{ id: 'cms', span: 3 }, { id: 'iop-as', span: 3 }] },
-  { h: 318, tiles: [{ id: 'saegim-ai', span: 2 }, { id: 'saegim-works', span: 2 }, { id: 'saegim-eval', span: 2 }] },
-  { h: 296, tiles: [{ id: 'the-ggi', span: 3 }, { id: 'nararun', span: 3 }] },
+  { h: 296, tiles: [{ id: 'cms', span: 3 }, { id: 'the-ggi', span: 3 }] },
   { h: 318, tiles: [{ id: 'claude-usage-crab', span: 2 }, { id: 'harbormaster', span: 2 }, { id: 'room-planner', span: 2 }] },
-  { h: 296, tiles: [{ id: 'transparentfy', span: 3 }, { id: 'ur-bmt', span: 3 }] },
+  { h: 296, tiles: [{ id: 'transparentfy', span: 3 }, { id: 'nararun', span: 3 }] },
   { h: 318, tiles: [{ id: 'txtfy', span: 2 }, { id: 'geoubom', span: 2 }, { id: 'power-scanner', span: 2 }] },
 ];
 const THUMB_H = 190;
@@ -130,7 +132,7 @@ function projectHtml(t, p) {
   return frame(c, `
 <img src="data:image/jpeg;base64,${thumb(p.slug)}" style="display:block;width:100%;height:${THUMB_H}px;object-fit:cover;flex-shrink:0;border-bottom:1px solid ${c.line};${dim}" />
 <div style="padding:16px 20px 18px;display:flex;flex-direction:column;gap:7px">
-<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span style="font-size:${p.title.length > 14 ? 17 : 19}px;font-weight:700;letter-spacing:-0.01em;line-height:1.3;white-space:nowrap">${T(p.title, 700)}</span><span style="font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid ${pill};color:${pill};white-space:nowrap">${T(p.status, 600)}</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span style="font-size:${p.title.length > 18 ? 15 : p.title.length > 14 ? 17 : 19}px;font-weight:700;letter-spacing:-0.01em;line-height:1.3;white-space:nowrap">${T(p.title, 700)}</span><span style="font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid ${pill};color:${pill};white-space:nowrap">${T(p.status, 600)}</span></div>
 <div style="font-size:13.5px;line-height:1.6;color:${c.body}">${T(p.line)}</div>
 </div>`);
 }
@@ -151,6 +153,14 @@ const used = new Set();
 let bytes = 0;
 
 for (const row of ROWS) {
+  if (row.heading) {
+    // 구획 제목. README 에서는 마크다운 제목(테마 글자색을 따른다)
+    readmeRows.push({ heading: row.heading });
+    for (const [name, color] of [['light', '#1f2328'], ['dark', '#e6edf3']]) {
+      preview[name].push(`<div style="font:600 20px sans-serif;color:${color};padding:20px 6px 10px;line-height:1.3">${esc(row.heading)}</div>`);
+    }
+    continue;
+  }
   const cells = [];
   const prev = { light: [], dark: [] };
   for (const tile of row.tiles) {
@@ -188,10 +198,24 @@ const SNAKE = `<picture>
   <img src="https://raw.githubusercontent.com/gnldnd11/gnldnd11/output/github-contribution-grid-snake.svg" alt="contribution snake" />
 </picture>`;
 
+const blocks = [];
+let run = [];
+const flush = () => {
+  if (run.length) blocks.push(`<p>\n${run.join('<br>\n')}\n</p>`);
+  run = [];
+};
+for (const r of readmeRows) {
+  if (typeof r === 'string') {
+    run.push(r);
+  } else {
+    flush();
+    blocks.push(`### ${r.heading}`);
+  }
+}
+flush();
+
 writeFileSync(join(ROOT, 'README.md'), `<!-- scripts/bento.mjs 가 만든다. 직접 고치지 말고 scripts/projects.json 을 고친다. -->
-<p>
-${readmeRows.join('<br>\n')}
-</p>
+${blocks.join('\n\n')}
 
 <br />
 

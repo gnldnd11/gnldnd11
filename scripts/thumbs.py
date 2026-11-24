@@ -23,8 +23,8 @@ THUMBS = {  # iop-as, amajda-yak, saegim-works, nextcal 은 scripts/art.py 가 �
     "saegim-eval": ("img/shots/eval.png", 2, (200, 20, 1380, 881), "cover"),
     "geoubom": ("projects/geoubom-mcp.png", 2, (0, 90, 618, 541), "cover"),
     "power-scanner": ("uploads/power-scanner-entry.png", 2, (0, 320, 636, 784), "cover"),
-    "ur-bmt": ("uploads/ur-bmt-chart.png", 3, (20, 0, 1070, 500), "cover"),
-    "saegim-ai": ("projects/saegim-ai.png", 2, (150, 212, 1060, 877), "cover"),  # 맨 윗줄 사진 칸에 실제 얼굴이 있어 그 아래부터 자른다
+    "ur-bmt": ("uploads/ur-bmt-chart.png", 2, (0, 0, 690, 500), "cover"),
+    "saegim-ai": ("projects/saegim-ai.png", 3, (150, 212, 1376, 792), "cover"),  # 맨 윗줄 사진 칸에 실제 얼굴이 있어 그 아래부터 자른다
     "cms": ("repo:scripts/captures/cms-mock.jpg", 3, (0, 0, 1180, 558), "cover"),  # Mock 모드로 띄워 찍은 화면. 고객사 로고 줄은 뺀다
     "0to1": ("repo:scripts/captures/0to1-lab.jpg", 4, (0, 320, 1360, 795), "cover"),  # 0to1.saegim.studio/lab
     "noon-desktop": ("projects/noon-signal.png", 2, (20, 90, 380, 353), "cover"),
