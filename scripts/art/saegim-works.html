@@ -23,12 +23,21 @@ body{font-family:P,sans-serif;color:#1C1917;background:linear-gradient(160deg,#F
 .tr{flex:1;height:3px;border-radius:2px;background:#F5F5F4;position:relative}
 .tr i{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:#F97316}
 .tr u{position:absolute;top:-3px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#fff;border:2px solid #F97316;box-sizing:border-box}
-.r b{font-size:8px;color:#1C1917;width:18px;text-align:right}
+.r b{font-size:8px;color:#1C1917;width:22px;text-align:right;white-space:nowrap}
 .mcp{margin-top:2px;background:#1C1917;border-radius:8px;padding:7px 9px;display:flex;flex-direction:column;gap:3px}
 .mcp span{font-size:7px;font-weight:700;letter-spacing:.12em;color:#A8A29E}
 .mcp b{font-size:9.5px;color:#FDBA74;font-weight:700}
 .kb{display:flex;gap:4px}
 .kb span{font-size:7.5px;font-weight:600;padding:2px 6px;border-radius:5px;background:#F5F5F4;color:#57534E}
+/* 움직임 */
+.f1{width:40%;animation:f1 5s ease-in-out infinite}.k1{left:40%;animation:k1 5s ease-in-out infinite}
+@keyframes f1{50%{width:52%}}@keyframes k1{50%{left:52%}}
+.f2{width:72%;animation:f2 6s ease-in-out infinite}.k2{left:72%;animation:k2 6s ease-in-out infinite}
+@keyframes f2{50%{width:62%}}@keyframes k2{50%{left:62%}}
+.f3{width:55%;animation:f3 7s ease-in-out infinite}.k3{left:55%;animation:k3 7s ease-in-out infinite}
+@keyframes f3{50%{width:66%}}@keyframes k3{50%{left:66%}}
+.live{display:inline-block;width:5px;height:5px;border-radius:50%;background:#4ADE80;margin-left:4px;vertical-align:1px;animation:live 1.6s ease-in-out infinite}
+@keyframes live{50%{opacity:.25}}
 </style></head><body>
 <div class="win">
   <div class="side"><div class="dots"><b></b><b></b><b></b></div><i></i><i class="on"></i><i></i><i></i></div>
@@ -36,11 +45,11 @@ body{font-family:P,sans-serif;color:#1C1917;background:linear-gradient(160deg,#F
     <div class="hd"><b>Coffee Bean Barista</b><span>APP</span></div>
     <div class="kb"><span>Bean notes</span><span>Brew logs</span><span>+2</span></div>
     <div class="sl">
-      <div class="r"><em>top_k</em><div class="tr"><i style="width:40%"></i><u style="left:40%"></u></div><b>8</b></div>
-      <div class="r"><em>similarity</em><div class="tr"><i style="width:72%"></i><u style="left:72%"></u></div><b>0.72</b></div>
-      <div class="r"><em>rerank</em><div class="tr"><i style="width:55%"></i><u style="left:55%"></u></div><b>on</b></div>
+      <div class="r"><em>top_k</em><div class="tr"><i class="f1"></i><u class="k1"></u></div><b>8</b></div>
+      <div class="r"><em>similarity</em><div class="tr"><i class="f2"></i><u class="k2"></u></div><b>0.72</b></div>
+      <div class="r"><em>rerank</em><div class="tr"><i class="f3"></i><u class="k3"></u></div><b>on</b></div>
     </div>
-    <div class="mcp"><span>MCP ENDPOINT</span><b class="mono">api.saegim.studio/mcp</b></div>
+    <div class="mcp"><span>MCP ENDPOINT <i class="live"></i></span><b class="mono">api.saegim.studio/mcp</b></div>
   </div>
 </div>
 </body></html>

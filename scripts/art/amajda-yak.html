@@ -26,6 +26,17 @@ body{font-family:P,sans-serif;background:radial-gradient(130% 120% at 50% 0%,#F7
 .pills em{margin-left:auto;white-space:nowrap;font-style:normal;font-size:8px;color:#A1A1A6}
 .btn{display:flex;gap:6px}
 .btn span{flex:1;text-align:center;font-size:10px;font-weight:700;padding:6px 0;border-radius:999px}
+/* 움직임 */
+.cd{line-height:1.2em}
+.roll{display:inline-block;height:1.2em;overflow:hidden;vertical-align:top}
+.col{display:block;animation:roll 10s steps(10) infinite}
+@keyframes roll{to{transform:translateY(-12em)}}
+.eyes i{animation:blink 4.5s infinite}
+@keyframes blink{0%,90%,100%{transform:scaleY(1)}94%{transform:scaleY(.12)}}
+.go{animation:glow 2.4s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 14px #5BE38Acc}}
+.p1,.p2,.p3{animation:bob 3s ease-in-out infinite}.p2{animation-delay:.4s}.p3{animation-delay:.8s}
+@keyframes bob{50%{translate:0 -2px}}
 </style></head><body>
 <div class="phone">
   <div class="isl">
@@ -33,10 +44,10 @@ body{font-family:P,sans-serif;background:radial-gradient(130% 120% at 50% 0%,#F7
     <div class="hd">
       <div class="eyes"><i></i><i></i></div>
       <div class="t"><b>Breakfast · 3</b><span>Take at 08:22</span></div>
-      <div class="cd mono">04:59</div>
+      <div class="cd mono">04:5<span class="roll"><span class="col">9<br>8<br>7<br>6<br>5<br>4<br>3<br>2<br>1<br>0</span></span></div>
     </div>
     <div class="pills"><span class="p1"></span><span class="p2"></span><span class="p3"></span><em>After meal</em></div>
-    <div class="btn"><span style="background:#5BE38A;color:#0B2A16">Take all</span><span style="background:#2C2C2E;color:#E5E5EA">In 10 min</span></div>
+    <div class="btn"><span class="go" style="background:#5BE38A;color:#0B2A16">Take all</span><span style="background:#2C2C2E;color:#E5E5EA">In 10 min</span></div>
   </div>
 </div>
 </body></html>

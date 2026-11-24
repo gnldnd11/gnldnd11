@@ -4,7 +4,7 @@
 // node scripts/bento.mjs             → assets/bento/*.svg, README.md
 // node scripts/bento.mjs --preview   → 저장소 루트에 _preview.html(라이트·다크 나란히, 커밋하지 않음)도 쓴다
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -30,6 +30,27 @@ const ROWS = [
   { h: 318, tiles: [{ id: 'txtfy', span: 2 }, { id: 'geoubom', span: 2 }, { id: 'power-scanner', span: 2 }] },
 ];
 const THUMB_H = 190;
+
+// 직접 그린 썸네일(scripts/art/<slug>.html)은 그림으로 찍지 않고 HTML 을 그대로 넣어 CSS 애니메이션이 돈다.
+// 그림 안에서는 스크립트가 돌지 않으므로 art HTML 은 CSS 만 쓴다. 폭은 art.py 의 SIZE 와 같다
+const ART_DIR = join(ROOT, 'scripts/art');
+const ART_W = { 2: 260, 3: 402 };
+
+// 캡처 썸네일의 움직임(GitHub 는 호버를 받지 않아 저절로 돈다). kenburns = 천천히 확대·이동, glitch = 잠깐 흔들림,
+// blink = 눈 위에 눈꺼풀을 덮는다(eyes 는 썸네일 520×380 기준 눈 상자 x0, y0, x1, y1)
+const MOTION = {
+  noon: { kind: 'blink', eyes: [[198, 155, 252, 234], [289, 155, 343, 234]] },
+  'noon-desktop': { kind: 'glitch' },
+  '0to1': { kind: 'kenburns' },
+  cms: { kind: 'kenburns' },
+  'the-ggi': { kind: 'kenburns' },
+  nararun: { kind: 'kenburns' },
+  'claude-usage-crab': { kind: 'kenburns' },
+};
+const THUMB_SRC = { w: 520, h: 380 };
+
+// 동작 줄이기를 켠 사람에게는 멈춰 보인다
+const REDUCED_MOTION = '@media (prefers-reduced-motion: reduce){*{animation:none!important}}';
 const LOOK = { noon: 'watch' };
 const TONE = { Shipped: 'ship', Live: 'live', Delivered: 'live', Production: 'live', Running: 'live', Building: 'wip', Prototype: 'wip', Contest: 'contest', Done: 'done', Ended: 'done' };
 
@@ -124,13 +145,83 @@ function thumb(slug) {
   return thumbCache.get(slug);
 }
 
-function projectHtml(t, p) {
+/** art HTML 의 CSS 를 그 타일 안으로 좁힌다. body 는 감싸는 칸으로, @font-face 는 빼고(글꼴은 fontCss 가 넣는다) @keyframes 는 그대로 */
+function scopeCss(css, scope) {
+  const src = css.replace(/\/\*[\s\S]*?\*\//g, '');
+  let out = '';
+  let i = 0;
+  while (i < src.length) {
+    const open = src.indexOf('{', i);
+    if (open < 0) break;
+    const sel = src.slice(i, open).trim();
+    if (sel.startsWith('@')) {
+      let depth = 0;
+      let j = open;
+      for (; j < src.length; j++) {
+        if (src[j] === '{') depth++;
+        else if (src[j] === '}' && --depth === 0) break;
+      }
+      if (!sel.startsWith('@font-face')) out += src.slice(i, j + 1).trim();
+      i = j + 1;
+      continue;
+    }
+    const close = src.indexOf('}', open);
+    const decl = src.slice(open + 1, close).replace(/font-family:P,/g, `font-family:${FAMILY},`);
+    const sels = sel.split(',').map((x) => x.trim()).filter((x) => x && x !== 'html')
+      .map((x) => (x.startsWith('body') ? scope + x.slice(4) : `${scope} ${x}`));
+    if (sels.length) out += `${sels.join(',')}{${decl}}`;
+    i = close + 1;
+  }
+  return out;
+}
+
+/** 직접 그린 썸네일. 그 폭으로 그린 HTML 을 타일 폭에 맞춰 키우고 세로 가운데에 둔다 */
+function artHtml(slug, span, innerW, line) {
+  const src = readFileSync(join(ART_DIR, `${slug}.html`), 'utf8');
+  const css = src.match(/<style>([\s\S]*?)<\/style>/)[1];
+  const body = src.match(/<body>([\s\S]*?)<\/body>/)[1].replace(/<!--[\s\S]*?-->/g, '').replace(/<br>/g, '<br/>');
+  const text = body.replace(/<[^>]+>/g, '');
+  for (const w of [400, 600, 700]) T(text, w);
+  const aw = ART_W[span] ?? ART_W[3];
+  const s = innerW / aw;
+  const top = (THUMB_H - THUMB_H * s) / 2;
+  const scope = `art-${slug}`;
+  return `<div style="position:relative;width:100%;height:${THUMB_H}px;overflow:hidden;flex-shrink:0;border-bottom:1px solid ${line}"><style>${scopeCss(css, `.${scope}`)}</style><div class="${scope}" style="position:absolute;left:0;top:${top.toFixed(2)}px;width:${aw}px;height:${THUMB_H}px;transform:scale(${s.toFixed(4)});transform-origin:0 0;overflow:hidden">${body}</div></div>`;
+}
+
+/** 캡처 썸네일. MOTION 에 있으면 움직임을 붙인다 */
+function shotHtml(p, innerW, line, dim) {
+  const m = MOTION[p.slug];
+  let css = '';
+  let imgAnim = '';
+  let overlay = '';
+  if (m?.kind === 'kenburns') {
+    css = '@keyframes kb{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.1) translate(-2.5%,-1.5%)}}';
+    imgAnim = 'animation:kb 14s ease-in-out infinite alternate;';
+  } else if (m?.kind === 'glitch') {
+    css = '@keyframes gl{0%,86%,100%{transform:none;filter:none}88%{transform:translate(-4px,0);filter:hue-rotate(90deg) saturate(2)}90%{transform:translate(3px,1px);filter:hue-rotate(-60deg)}92%{transform:translate(-1px,0);filter:none}}';
+    imgAnim = 'animation:gl 3.6s linear infinite;';
+  } else if (m?.kind === 'blink') {
+    // object-fit:cover 와 같은 셈으로 눈 상자를 타일 위치로 옮긴다
+    const sc = Math.max(innerW / THUMB_SRC.w, THUMB_H / THUMB_SRC.h);
+    const ox = (innerW - THUMB_SRC.w * sc) / 2;
+    const oy = (THUMB_H - THUMB_SRC.h * sc) / 2;
+    const half = (Math.max(...m.eyes.map(([, y0, , y1]) => y1 - y0)) * sc + 2) / 2;
+    css = `@keyframes lid{0%,91%,100%{border-top-width:0;border-bottom-width:0}95%{border-top-width:${half.toFixed(1)}px;border-bottom-width:${half.toFixed(1)}px}}`;
+    overlay = m.eyes.map(([x0, y0, x1, y1]) => `<div style="position:absolute;box-sizing:border-box;left:${(ox + x0 * sc - 1).toFixed(1)}px;top:${(oy + y0 * sc - 1).toFixed(1)}px;width:${((x1 - x0) * sc + 2).toFixed(1)}px;height:${((y1 - y0) * sc + 2).toFixed(1)}px;border:0 solid #000;animation:lid 4.8s infinite"></div>`).join('');
+  }
+  return `<div style="position:relative;width:100%;height:${THUMB_H}px;overflow:hidden;flex-shrink:0;border-bottom:1px solid ${line}">${css ? `<style>${css}</style>` : ''}<img src="data:image/jpeg;base64,${thumb(p.slug)}" style="display:block;width:100%;height:${THUMB_H}px;object-fit:cover;${dim}${imgAnim}" />${overlay}</div>`;
+}
+
+function projectHtml(t, p, span) {
   const look = LOOK[p.slug] || 'base';
   const c = t[look];
   const pill = look === 'watch' ? c.fg : t.tone[TONE[p.status] || 'done'];
   const dim = look === 'muted' ? 'filter:grayscale(1);opacity:0.75;' : '';
+  // 타일 안쪽 폭(바깥 여백 양쪽, 테두리 1px 양쪽 뺌)
+  const innerW = widthOf(span) - M * 2 - 2;
   return frame(c, `
-<img src="data:image/jpeg;base64,${thumb(p.slug)}" style="display:block;width:100%;height:${THUMB_H}px;object-fit:cover;flex-shrink:0;border-bottom:1px solid ${c.line};${dim}" />
+${existsSync(join(ART_DIR, `${p.slug}.html`)) ? artHtml(p.slug, span, innerW, c.line) : shotHtml(p, innerW, c.line, dim)}
 <div style="padding:16px 20px 18px;display:flex;flex-direction:column;gap:7px">
 <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span style="font-size:${p.title.length > 18 ? 15 : p.title.length > 14 ? 17 : 19}px;font-weight:700;letter-spacing:-0.01em;line-height:1.3;white-space:nowrap">${T(p.title, 700)}</span><span style="font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid ${pill};color:${pill};white-space:nowrap">${T(p.status, 600)}</span></div>
 <div style="font-size:13.5px;line-height:1.6;color:${c.body}">${T(p.line)}</div>
@@ -140,7 +231,7 @@ function projectHtml(t, p) {
 function svg(w, h, html, title) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(title)}">
 <title>${esc(title)}</title>
-<foreignObject x="${M}" y="${M}" width="${w - M * 2}" height="${h - M * 2}"><div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%"><style>${fontCss()}</style>${html}</div></foreignObject>
+<foreignObject x="${M}" y="${M}" width="${w - M * 2}" height="${h - M * 2}"><div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%"><style>${fontCss()}${REDUCED_MOTION}</style>${html}</div></foreignObject>
 </svg>
 `;
 }
@@ -175,7 +266,7 @@ for (const row of ROWS) {
     for (const name of ['light', 'dark']) {
       glyphs = { 400: '', 600: '', 700: '' };
       const t = THEMES[name];
-      const html = tile.id === 'intro' ? introHtml(t) : tile.id === 'stats' ? statsHtml(t) : projectHtml(t, p);
+      const html = tile.id === 'intro' ? introHtml(t) : tile.id === 'stats' ? statsHtml(t) : projectHtml(t, p, tile.span);
       const s = svg(w, row.h, html, label);
       bytes += Buffer.byteLength(s);
       writeFileSync(join(ROOT, OUT, `${tile.id}-${name}.svg`), s);
