@@ -30,7 +30,14 @@
     "stack": "JavaScript · VS Code API",
     "status": "Shipped",
     "kind": "ok",
-    "url": "https://marketplace.visualstudio.com/items?itemName=saegim.claude-usage-crab"
+    "url": "https://marketplace.visualstudio.com/items?itemName=saegim.claude-usage-crab",
+    "flagship": true,
+    "marketplace": "saegim.claude-usage-crab",
+    "stats": {
+      "installs": 687,
+      "rating": 5.0,
+      "asOf": "2026-11-25"
+    }
   },
   {
     "slug": "harbormaster",

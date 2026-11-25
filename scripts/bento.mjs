@@ -19,13 +19,13 @@ const PROFILE = { name: 'Hwiwoong Kim', handle: '@gnldnd11', role: 'AI Engineer 
 const ROWS = [
   { h: 180, tiles: [{ id: 'intro', span: 4 }, { id: 'stats', span: 2 }] },
   { heading: 'Featured · AI systems' },
-  { h: 296, tiles: [{ id: 'iop-as', span: 3 }, { id: 'saegim-ai', span: 3 }] },
-  { h: 318, tiles: [{ id: 'saegim-works', span: 2 }, { id: 'saegim-eval', span: 2 }, { id: 'ur-bmt', span: 2 }] },
+  { h: 296, tiles: [{ id: 'claude-usage-crab', span: 3 }, { id: 'iop-as', span: 3 }] },
+  { h: 318, tiles: [{ id: 'saegim-ai', span: 2 }, { id: 'saegim-works', span: 2 }, { id: 'saegim-eval', span: 2 }] },
   { heading: 'More projects' },
   { h: 318, tiles: [{ id: 'noon', span: 2 }, { id: 'noon-desktop', span: 2 }, { id: 'amajda-yak', span: 2 }] },
   { h: 296, tiles: [{ id: '0to1', span: 4 }, { id: 'nextcal', span: 2 }] },
   { h: 296, tiles: [{ id: 'cms', span: 3 }, { id: 'the-ggi', span: 3 }] },
-  { h: 318, tiles: [{ id: 'claude-usage-crab', span: 2 }, { id: 'harbormaster', span: 2 }, { id: 'room-planner', span: 2 }] },
+  { h: 318, tiles: [{ id: 'harbormaster', span: 2 }, { id: 'room-planner', span: 2 }, { id: 'ur-bmt', span: 2 }] },
   { h: 296, tiles: [{ id: 'transparentfy', span: 3 }, { id: 'nararun', span: 3 }] },
   { h: 318, tiles: [{ id: 'txtfy', span: 2 }, { id: 'geoubom', span: 2 }, { id: 'power-scanner', span: 2 }] },
 ];
@@ -68,6 +68,7 @@ const THEMES = {
     invert: { bg: '#17171A', border: '1px solid #17171A', fg: '#F2F1EC', sub: '#B9B7AF', body: '#D6D4CC' },
     watch: { bg: '#000000', border: '1px solid #000000', fg: '#F2F1EC', sub: '#B9B7AF', body: '#D6D4CC', line: '#000000' },
     muted: { bg: 'transparent', border: '1.5px dashed #C9C6BC', fg: '#3A3935', sub: '#66645E', body: '#4A4843', line: '#E4E2DA' },
+    flagship: '#F5B400',
     tone: { ship: '#C2410C', live: '#1D4ED8', contest: '#6D28D9', wip: '#B45309', done: '#66645E' },
   },
   dark: {
@@ -75,6 +76,7 @@ const THEMES = {
     invert: { bg: '#F2F1EC', border: '1px solid #F2F1EC', fg: '#17171A', sub: '#5E5C57', body: '#3A3935' },
     watch: { bg: '#000000', border: '1px solid #30363D', fg: '#E6EDF3', sub: '#9198A1', body: '#C9D1D9', line: '#000000' },
     muted: { bg: 'transparent', border: '1.5px dashed #3D444D', fg: '#C9D1D9', sub: '#9198A1', body: '#9198A1', line: '#30363D' },
+    flagship: '#E3B341',
     tone: { ship: '#F0883E', live: '#58A6FF', contest: '#BC8CFF', wip: '#D29922', done: '#9198A1' },
   },
 };
@@ -82,6 +84,28 @@ const THEMES = {
 const projects = Object.fromEntries(
   JSON.parse(readFileSync(join(ROOT, 'scripts/projects.json'), 'utf8')).map((p) => [p.slug, p]),
 );
+
+// VS Code 마켓플레이스 공개 수치(설치 수·평점). 생성 때 받아 오고, 못 받으면 projects.json 의 stats 를 쓴다
+async function fetchMarketplaceStats(id) {
+  const res = await fetch('https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json;api-version=3.0-preview.1' },
+    body: JSON.stringify({ filters: [{ criteria: [{ filterType: 7, value: id }] }], flags: 256 }),
+    signal: AbortSignal.timeout(15000),
+  });
+  const ext = (await res.json()).results?.[0]?.extensions?.[0];
+  const st = Object.fromEntries((ext?.statistics ?? []).map((s) => [s.statisticName, s.value]));
+  if (!st.install) throw new Error('no stats');
+  return { installs: Math.round(st.install), rating: st.averagerating ?? null };
+}
+for (const p of Object.values(projects)) {
+  if (!p.marketplace) continue;
+  try {
+    p.stats = { ...p.stats, ...(await fetchMarketplaceStats(p.marketplace)) };
+  } catch (e) {
+    console.warn(`마켓플레이스 수치를 못 받아 저장된 값을 쓴다(${p.slug}): ${e.message}`);
+  }
+}
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const widthOf = (span) => Math.round((TOTAL_W / 6) * span);
@@ -193,7 +217,19 @@ function artHtml(slug, span, innerW, line) {
 }
 
 /** 캡처 썸네일. MOTION 에 있으면 움직임을 붙인다 */
-function shotHtml(p, innerW, line, dim) {
+/** 대표작 리본: ★ Flagship + 설치 수·평점 */
+function flagshipBadge(p, t) {
+  if (!p.flagship) return '';
+  const chip = 'display:inline-block;font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px;white-space:nowrap';
+  const parts = [`<span style="${chip};background:${t.flagship};color:#1A1200">${T('★ Flagship', 700)}</span>`];
+  if (p.stats?.installs) {
+    const rating = p.stats.rating ? ` · ★ ${p.stats.rating.toFixed(1)}` : '';
+    parts.push(`<span style="${chip};background:rgba(0,0,0,.62);color:#fff">${T(`${p.stats.installs.toLocaleString('en-US')} installs${rating}`, 700)}</span>`);
+  }
+  return `<div style="position:absolute;left:10px;top:10px;display:flex;gap:6px">${parts.join('')}</div>`;
+}
+
+function shotHtml(p, innerW, line, dim, badge = '') {
   const m = MOTION[p.slug];
   let css = '';
   let imgAnim = '';
@@ -213,7 +249,7 @@ function shotHtml(p, innerW, line, dim) {
     css = `@keyframes lid{0%,91%,100%{border-top-width:0;border-bottom-width:0}95%{border-top-width:${half.toFixed(1)}px;border-bottom-width:${half.toFixed(1)}px}}`;
     overlay = m.eyes.map(([x0, y0, x1, y1]) => `<div style="position:absolute;box-sizing:border-box;left:${(ox + x0 * sc - 1).toFixed(1)}px;top:${(oy + y0 * sc - 1).toFixed(1)}px;width:${((x1 - x0) * sc + 2).toFixed(1)}px;height:${((y1 - y0) * sc + 2).toFixed(1)}px;border:0 solid #000;animation:lid 4.8s infinite"></div>`).join('');
   }
-  return `<div style="position:relative;width:100%;height:${THUMB_H}px;overflow:hidden;flex-shrink:0;border-bottom:1px solid ${line}">${css ? `<style>${css}</style>` : ''}<img src="data:image/jpeg;base64,${thumb(p.slug)}" style="display:block;width:100%;height:${THUMB_H}px;object-fit:cover;${dim}${imgAnim}" />${overlay}</div>`;
+  return `<div style="position:relative;width:100%;height:${THUMB_H}px;overflow:hidden;flex-shrink:0;border-bottom:1px solid ${line}">${css ? `<style>${css}</style>` : ''}<img src="data:image/jpeg;base64,${thumb(p.slug)}" style="display:block;width:100%;height:${THUMB_H}px;object-fit:cover;${dim}${imgAnim}" />${overlay}${badge}</div>`;
 }
 
 function projectHtml(t, p, span) {
@@ -221,10 +257,12 @@ function projectHtml(t, p, span) {
   const c = t[look];
   const pill = look === 'watch' ? c.fg : t.tone[TONE[p.status] || 'done'];
   const dim = look === 'muted' ? 'filter:grayscale(1);opacity:0.75;' : '';
-  // 타일 안쪽 폭(바깥 여백 양쪽, 테두리 1px 양쪽 뺌)
-  const innerW = widthOf(span) - M * 2 - 2;
-  return frame(c, `
-${existsSync(join(ART_DIR, `${p.slug}.html`)) ? artHtml(p.slug, span, innerW, c.line) : shotHtml(p, innerW, c.line, dim)}
+  // 대표작은 금색 2px 테두리
+  const box = p.flagship ? { ...c, border: `2px solid ${t.flagship}` } : c;
+  // 타일 안쪽 폭(바깥 여백 양쪽, 테두리 양쪽 뺌)
+  const innerW = widthOf(span) - M * 2 - (p.flagship ? 4 : 2);
+  return frame(box, `
+${existsSync(join(ART_DIR, `${p.slug}.html`)) ? artHtml(p.slug, span, innerW, c.line) : shotHtml(p, innerW, c.line, dim, flagshipBadge(p, t))}
 <div style="padding:16px 20px 18px;display:flex;flex-direction:column;gap:7px">
 <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span style="font-size:${p.title.length > 18 ? 15 : p.title.length > 14 ? 17 : 19}px;font-weight:700;letter-spacing:-0.01em;line-height:1.3;white-space:nowrap">${T(p.title, 700)}</span><span style="font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid ${pill};color:${pill};white-space:nowrap">${T(p.status, 600)}</span></div>
 <div style="font-size:13.5px;line-height:1.6;color:${c.body}">${T(p.line)}</div>

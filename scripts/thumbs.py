@@ -18,13 +18,13 @@ SIZE = {2: (520, 380), 3: (804, 380), 4: (1088, 380)}
 # 원본 경로는 0to1 public 기준. "repo:" 로 시작하면 이 저장소 기준(scripts/captures 의 직접 찍은 화면)
 THUMBS = {  # iop-as, amajda-yak, saegim-works, nextcal 은 scripts/art.py 가 그린다
     "noon": ("projects/noon-watch.png", 2, None, "contain"),
-    "claude-usage-crab": ("uploads/claude-usage-agents-room.png", 2, (110, 300, 576, 640), "cover"),
+    "claude-usage-crab": ("uploads/claude-usage-agents-room.png", 3, (64, 362, 620, 624), "cover"),
     "harbormaster": ("uploads/harbormaster-panel.png", 2, (0, 0, 518, 378), "cover"),
     "saegim-eval": ("img/shots/eval.png", 2, (200, 20, 1380, 881), "cover"),
     "geoubom": ("projects/geoubom-mcp.png", 2, (0, 90, 618, 541), "cover"),
     "power-scanner": ("uploads/power-scanner-entry.png", 2, (0, 320, 636, 784), "cover"),
     "ur-bmt": ("uploads/ur-bmt-chart.png", 2, (0, 0, 690, 500), "cover"),
-    "saegim-ai": ("projects/saegim-ai.png", 3, (150, 212, 1376, 792), "cover"),  # 맨 윗줄 사진 칸에 실제 얼굴이 있어 그 아래부터 자른다
+    "saegim-ai": ("projects/saegim-ai.png", 2, (150, 212, 1060, 877), "cover"),  # 맨 윗줄 사진 칸에 실제 얼굴이 있어 그 아래부터 자른다
     "cms": ("repo:scripts/captures/cms-mock.jpg", 3, (0, 0, 1180, 558), "cover"),  # Mock 모드로 띄워 찍은 화면. 고객사 로고 줄은 뺀다
     "0to1": ("repo:scripts/captures/0to1-lab.jpg", 4, (0, 320, 1360, 795), "cover"),  # 0to1.saegim.studio/lab
     "noon-desktop": ("projects/noon-signal.png", 2, (20, 90, 380, 353), "cover"),
