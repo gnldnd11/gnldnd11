@@ -49,8 +49,11 @@ const MOTION = {
 };
 const THUMB_SRC = { w: 520, h: 380 };
 
-// 동작 줄이기를 켠 사람에게는 멈춰 보인다
-const REDUCED_MOTION = '@media (prefers-reduced-motion: reduce){*{animation:none!important}}';
+// 움직임 스위치. 20개 타일이 한꺼번에 돌면 브라우저가 버벅여 11-24 에 껐다(false 면 모든 애니메이션을 멈춘 첫 장면)
+const ANIMATE = false;
+
+// 켜 두어도 동작 줄이기를 켠 사람에게는 멈춰 보인다
+const MOTION_CSS = ANIMATE ? '@media (prefers-reduced-motion: reduce){*{animation:none!important}}' : '*{animation:none!important}';
 const LOOK = { noon: 'watch' };
 const TONE = { Shipped: 'ship', Live: 'live', Delivered: 'live', Production: 'live', Running: 'live', Building: 'wip', Prototype: 'wip', Contest: 'contest', Done: 'done', Ended: 'done' };
 
@@ -231,7 +234,7 @@ ${existsSync(join(ART_DIR, `${p.slug}.html`)) ? artHtml(p.slug, span, innerW, c.
 function svg(w, h, html, title) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(title)}">
 <title>${esc(title)}</title>
-<foreignObject x="${M}" y="${M}" width="${w - M * 2}" height="${h - M * 2}"><div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%"><style>${fontCss()}${REDUCED_MOTION}</style>${html}</div></foreignObject>
+<foreignObject x="${M}" y="${M}" width="${w - M * 2}" height="${h - M * 2}"><div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%"><style>${fontCss()}${MOTION_CSS}</style>${html}</div></foreignObject>
 </svg>
 `;
 }
